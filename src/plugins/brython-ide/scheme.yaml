@@ -1,0 +1,15 @@
+# Наличие .\src\static\data\pyide\index.html
+# Наличие в файле .\src\scenes\$root\package.yaml строки brython-ide: true
+# Файлы должны находиться в папке data любой из сцен, например .\src\scenes\$root\data\test.py
+
+- brython: test.py
+- brython: "from browser import document\ncnv=document['scr_html']\ncnv.textContent='Hello Brython!'"
+- brython: "from browser import document\ncnv=document['scr_canvas']\ncnv.width=754\ncnv.height=386\nctx=cnv.getContext('2d')\nctx.fillRect(0,0,754,386)"
+- brython: false
+
+
+
+#from browser import document
+#cnv=document['scr_html']
+#cnv.textContent='Hello Brython!'
+#print('Hello Brython!')

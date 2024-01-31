@@ -1,0 +1,32 @@
+- main-menu:
+  - $root.$init: Начать игру
+    icon: ev
+    info: Нажав на эту кнопку  начнётся игра
+
+  - next: Продолжить
+    icon: ch
+
+  - scene2.$init: Настройки
+    disabled: true
+    
+  - css:
+      transform: unset # убирает центрирование [ transform: translateX(-50%) ]
+      top: 50px
+      left: unset
+      right: 50px
+      width: 400px
+  - onClick:
+      dialog-box: true
+      hands: true
+      
+       
+- main-menu: false # hide menu
+- main-menu: true # показать готовое меню. но которое было скрыто
+
+#################
+# При клике на пункт меню, можно воспроизвести аудио
+# для этого необходимо написать дополнительные параметры
+# в файле $root/package.yaml
+main-menu:
+  audio: sysFlipPages
+  volume: 0.1 # не обязательный параметр

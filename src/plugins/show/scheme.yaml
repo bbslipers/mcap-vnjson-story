@@ -1,0 +1,7 @@
+- center: characterImage_1
+- left: characterImage_2
+- right: characterImage_3
+
+- center: false # очистить элемент персонажа
+- left: false #
+- right: false #

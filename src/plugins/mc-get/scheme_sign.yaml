@@ -1,0 +1,11 @@
+- mc-get-sign:
+    text1: text_1
+    text2: text_2
+    text3: text_3
+    text4: text_4
+    "minecraft:wall_sign":
+        $: "WALL {{text_1}} {{text_2}} {{text_3}} {{text_4}}"
+    "minecraft:standing_sign":
+        $: "STANDING {{text_1}} {{text_2}} {{text_3}} {{text_4}}"
+    "default":
+        $: Табичка не найдена

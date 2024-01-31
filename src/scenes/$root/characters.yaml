@@ -1,0 +1,24 @@
+- id: $
+  name:
+  nameColor: '#D9D9D9'
+  replyColor: '#D9D9D9'
+
+- id: $G
+  name:
+  nameColor: '#00B03B'
+  replyColor: '#00B03B'
+
+- id: $B
+  name:
+  nameColor: '#00B2EB'
+  replyColor: '#00B2EB'
+
+- id: $R
+  name:
+  nameColor: '#E10057'
+  replyColor: '#E10057'
+
+- id: player
+  name: player
+  nameColor: '#00B2EB'
+  replyColor: '#00B2EB'

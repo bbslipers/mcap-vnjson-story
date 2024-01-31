@@ -1,0 +1,19 @@
+# require ./static/data/chess/index.html
+
+- $: У лукоморья дуб зелёный;
+  chess: nnnnnnnn/8/8/8/8/8/8/8 w - - 0 1
+  status-bar: true
+- chess: nnnnnnnn/NNNNNNNN/8/8/8/8/8/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/8/8/8/8/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/8/8/8/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/8/8/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/8/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/8 w - - 0 1
+- chess: nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN/nnnnnnnn/NNNNNNNN w - - 0 1
+- chess: false
+
+
+
+############
+# В файле package.yaml необходимо дописать параметр chess: true
+############

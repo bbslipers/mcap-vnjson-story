@@ -1,0 +1,26 @@
+- select-word:
+    quetion:
+      text: Корова говорит
+#     css:
+#       top: 10px
+#       left: 10px
+#       color: white
+#       background-color: grey 
+    answers: 
+      correct: 3
+      variants:
+        - 'Бе-е-е'
+        - 'Ме-е-е'
+        - 'Му-у-у-у-у'
+        - 'Ку-ка-ре-ку'
+#     css:    
+#       top: 250px
+#       left: 650px
+#       color: white
+#       background-color: grey 
+    onSuccess:
+      $: Верно
+      next: true
+    onFailure:
+      $: Не верно    
+      next: true

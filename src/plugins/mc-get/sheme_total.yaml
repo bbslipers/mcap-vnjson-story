@@ -1,0 +1,61 @@
+
+- mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "249 65 112"
+  next: true
+
+- $: Считаем количество денег
+  mc-get-store-total:
+    id: "cashcraft:cash"
+    #damage: 12
+    formula: SumCount
+    result: RESULT_2
+- $: "Результат {{RESULT_2}}"
+
+##################################################################
+##################################################################
+- mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "249 65 112"
+  next: true
+
+- $: Проверяем сумму из куплюр номиналом 100
+  mc-get-store-total:
+    id: "cashcraft:cash"
+    damage: 12
+    rates:
+      - 3: 10 # монета
+      - 6: 1 # куплюра
+      - 12: 100 # куплюра
+    formula: SumRateCount
+    result: RESULT_1
+- $: "Результат {{RESULT_1}}"
+
+
+
+## Проверяем контейнеры котырые держим в руке
+
+- mc-get:
+    request: HAND
+    slot: 0
+    pos: "0 0 0"
+  next: true
+
+
+- $: Проверяем сумму из куплюр номиналом 100
+  mc-get-store-total:
+    id: "cashcraft:cash" # filter
+    #damage: 5  # filter
+    rates:
+      - 0: 1 # монета
+      - 1: 2 # монета
+      - 2: 5 # монета
+      - 3: 10 # монета
+      - 4: 20 # монета
+      - 5: 50 # монета
+    formula: SumRateCount
+    result: RESULT_1
+  next: true
+- $: "Результат {{RESULT_1}}"

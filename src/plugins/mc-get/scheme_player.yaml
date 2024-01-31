@@ -1,0 +1,31 @@
+# получаем информацию о игроке
+- mc-get:
+    request: PLAYER
+    slot: 0
+    pos: "0 0 0"
+  next: true
+
+# записываем в переменные значения свойств игрока
+# свойства указанные в playerEffects записываются на одном уровне
+# со свойствами игрока.
+- mc-get-player-nbt:
+      name: playerName
+      inGame: isInGame
+      playerX: playerX
+      armor: armor
+      levitation: isAIR # effect
+      poison: poison # effect
+  next: true
+
+- al: "player: <font color='orange'>{{playerName}}</font><br>"
+  next: true
+
+- +: "inGame: <font color='orange'>{{isInGame}}</font><br>"
+  next: true
+- +: "playerX: <font color='orange'>{{playerX}}</font><br>"
+  next: true
+- +: "armor: <font color='orange'>{{armor}}</font><br>"
+  next: true
+- +: "levitation: <font color='orange'>{{isAIR}}</font><br>"
+  next: true
+- +: "poison: <font color='orange'>{{poison}}</font><br>"

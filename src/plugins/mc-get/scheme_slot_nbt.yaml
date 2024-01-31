@@ -1,0 +1,45 @@
+
+########################### nbt ####################################
+
+- data-set:
+    posBlock: "251 65 112"
+  next: true
+  #####################################
+- al: Получаю запрос блока
+  mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "{{posBlock}}" # "251 65 112"
+  next: true
+
+#####################################
+ 
+- mc-get-block-nbt:
+    id: block_id # vnjs.state.data.block_id
+    OwnerName: OwnerName # vnjs.state.data.OwnerName
+    x: posX # vnjs.state.data.posX
+  
+
+- al: "
+      <font color='skyblue'>id</font>: {{block_id}} <br>
+      <font color='skyblue'>OwnerName</font>: {{OwnerName}}<br>
+      <font color='skyblue'>posX</font>: {{posX}}"
+
+########################### store slot ####################################
+- mc-get-store-slot:
+    slot: 0
+    count: count1 # Создается переменная count1
+    damage: damage1 # Создается переменная damage1
+    "minecraft:wool":
+        $: Шерсть найдена
+    "minecraft:planks":
+        $: Деревянные доски
+    "default":
+        $: не найдено
+
+
+- al: "
+      <font color='skyblue'>count</font>: {{count1}} <br>
+      <font color='skyblue'>damage</font>: {{damage1}}"
+
+###############################################################

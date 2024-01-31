@@ -1,0 +1,36 @@
+# Видео неоходимо ложить в папку /assets
+# Из за ограничений политики безопасности браузера,
+# Пользователь должен произвести взаимодействие со страницей ( произвести клик )
+# Поэтому нельзя использовать плагин video / audio ,
+# до того как пользователь кликнет по экрану.
+# А именно при старте новеллы, первым плагином
+
+- video: assetName
+
+- video:
+    name: assetName
+    volume: 0.7            ## Не обязательный параметр
+    onEnd:                 ## Не обязательный параметр. В качестве значения принимает объект для выполнения
+      dialog-box: false
+      scene: paintBoard
+    css:                   ## Не обязательный параметр
+      top: 50px
+      left: 40px
+      width: 500px
+      height: 300px
+
+- video: pause
+- video: play
+- video: false # stop
+- video: stop # stop
+
+- video:
+    name: assetName
+    volume: 0.7
+    onEnd:
+      dialog-box: true
+    css:
+      top: 50px
+      left: 40px
+      width: 500px
+      height: 300px

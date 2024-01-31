@@ -1,0 +1,67 @@
+.vnjson-hud{
+    width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: unset;
+    bottom: 210px;
+    z-index: 4000;
+}
+.vnjson-hud__indicators{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 7px;
+}
+.vnjson-hud__indicator{
+    width: 235px;
+    height: 20px;
+    border-radius: 2px;
+    border: 2px solid black;
+    background-color: rgba(0,0,0,0.8);
+}
+.vnjson-hud__left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: crimson;
+    border-radius: 2px;
+}
+
+.vnjson-hud__right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: lightgreen; 
+    border-radius: 2px;
+}
+/**
+ * INV
+ */
+.vnjson-hud__inv{
+    display: flex;
+    justify-content: space-between;
+}
+.vnjson-hud__slot{
+    width: 60px;
+    height: 60px;
+    background-image: url(./assets/slot.png);
+    background-size: 109%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vnjson-hud__item{
+    width: 40px;
+    height: 40px;  
+   /* background-image: url(./assets/slot.png);*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.3s;
+}

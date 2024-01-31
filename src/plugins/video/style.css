@@ -1,0 +1,13 @@
+
+.vnjson__video{
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.video-js{
+  top: 0px;
+  left: 0px;
+  width: 400px;
+  height: 250px;
+}
+

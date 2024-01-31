@@ -1,0 +1,16 @@
+- mc-get:
+    request: HAND
+    slot: 0 # 1 left / right
+    pos: "0 0 0"
+  next: true
+
+
+
+- mc-get-hand-item:
+    damage: damage_2
+    "minecraft:planks":
+        $: Доски
+    "minecraft:tnt":
+        $: "Динамит {{damage_2}}"
+    "default":
+        $: DEFAULT

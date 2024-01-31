@@ -1,0 +1,43 @@
+- menu:
+    # label - перемещение внутри текущей сцены
+    - $init: Как подключить 1
+      icon: p1
+    # scene2.label - перемещение в другую сцену
+    - testdata.$init: Как подключить 2
+    - tree__fs: Файловая структура
+      icon: ch
+    # next
+    - next: YAML скрипты
+    # mark
+    - _mark: Прыжок на метку
+
+    - plug: Список плагинов
+      icon: ev # asset
+      disabled: true # деактивировать элемент списка
+      
+    - $root.$init: Вернуться в начало
+    # onClick - Выполняет плагины после клика по любому пункту меню
+    - onClick:
+        hands: false
+        dialog-box: true
+    # css - стилизация меню
+    - css:
+        transform: unset
+        left: unset
+        width: 300px
+        top: 50px
+        right: 20px
+
+# меню автоматически скрывается после сделанного выбора
+
+
+- menu: false # hide menu
+- menu: true # показать готовое меню. но которое было скрыто
+
+#################
+# При клике на пункт меню, можно воспроизвести аудио
+# для этого необходимо написать дополнительные параметры
+# в файле $root/package.yaml
+menu:
+  audio: sysFlipPages
+  volume: 0.1 # не обязательный параметр

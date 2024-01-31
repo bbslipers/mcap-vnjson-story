@@ -1,0 +1,9 @@
+.screen-vnjson__slide{
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+}

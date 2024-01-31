@@ -1,0 +1,74 @@
+.vnjson-loader {
+  background: #223;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.vnjson-loader__item{
+  display: flex;
+  flex-direction: column;
+}
+.vnjson-loader__progress{
+  color: cadetblue;
+  width: 100%;
+  text-align: right;
+  font-size: 22px;
+}
+
+.vnjson-loader__indicator {
+	display: block;
+	position: relative;
+	width: 80px;
+	display: grid;
+	place-items: center;
+  margin-top: 12px;
+}
+
+.vnjson-loader__indicator::before,
+.vnjson-loader__indicator::after {
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+}
+
+
+
+
+.vnjson-loader__indicator::before {
+	height: 2px;
+	width: 100%;
+	background-color: cadetblue;
+	animation: vnjson__loader-4 0.8s cubic-bezier(0, 0, 0.03, 0.9) infinite;
+}
+
+@keyframes vnjson__loader-4 {
+	0%,
+	44%,
+	88.1%,
+	100% {
+		transform-origin: left;
+	}
+
+	0%,
+	100%,
+	88% {
+		transform: scaleX(0);
+	}
+
+	44.1%,
+	88% {
+		transform-origin: right;
+	}
+
+	33%,
+	44% {
+		transform: scaleX(1);
+	}
+}

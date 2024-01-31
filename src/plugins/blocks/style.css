@@ -1,0 +1,16 @@
+.vnjson__blocks{
+  z-index: 500;
+}
+.vnjson__blocks-item{
+  overflow: hidden;
+  z-index: 0;
+}
+
+.vnjson__blocks-wrapper-item{
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+}
+.vnjson__blocks-wrapper-item img{
+  position: relative;
+}

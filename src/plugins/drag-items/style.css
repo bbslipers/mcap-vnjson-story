@@ -1,0 +1,34 @@
+
+.drag-items{
+  z-index: 500;
+  width: 1024px;
+  height: 568px;
+}
+
+.drag-items__item{
+  display: flex;  
+  position: absolute;
+  height: 40px;   
+  min-width: 200px;  
+  padding: 7px 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;  
+  align-items: center;   
+  justify-content: center;  
+  color: white;  
+  background-color: #223;    
+}
+.drag-items__item:hover{
+  background-color: #112; 
+}
+.drag-items__item::before{
+  top: 3px;
+  left: 3px;  
+  width: 5px;
+  height: 5px;
+  content: "";
+  position: absolute;  
+  border-radius: 50%;
+  background-color: green;
+}

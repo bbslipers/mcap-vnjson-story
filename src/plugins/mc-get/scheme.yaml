@@ -1,0 +1,115 @@
+# Пример запроса
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    x: 0
+    y: 0
+    z: 0
+
+# С приходящими данными пока не очень ясно как обращаться
+# Я их пока положил сюда
+# vnjs.store.MINECRAFT["request"] = data
+# vnjs.store.MINECRAFT.ENTITY.nbt.id
+
+# Проверям соответсвут ли  блок полученый командой mc-get уазанным критериям
+# В данном случае, проверяется id блока
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: "307 4 682"
+  next: true
+
+- mc-get-block:
+    "minecraft:diamond_block":
+        al: DIAMOND
+    "minecraft:air":
+        $: AIR
+    "default":
+        $:  DEFAULT
+############################ color ####################################
+
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: "307 5 682"
+  next: true
+
+- mc-get-block-color:
+    "minecraft:wool.lime":
+        $: Цвет lime. Блок шерсть
+    "minecraft:wool.red":
+        $: RED
+    "default":
+        $:  DEFAULT COLOR
+########################### variant #####################################
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: "307 6 682"
+  next: true
+
+- mc-get-block-variant:
+    "minecraft:log.birch":
+      $: Вариант берёза. Блок дерево
+    "minecraft:log.birch111":
+      $: test
+    "default":
+      $: Вариант поумолчанию
+
+############################# axis ###################################
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: "307 7 682"
+  next: true
+
+- mc-get-block-axis:
+    "minecraft:log.x":
+        $: Расположен по оси x. Блок дерево
+    "minecraft:log.y":
+        $: Y
+    "default":
+        $: xyz  
+
+############################## facing ##################################
+- mc-get:
+    request: BLOCK #BLOCK, SLOT, PLAYER, ENTITY
+    slot: 0
+    pos: "307 8 682"
+     
+  next: true
+
+- mc-get-block-facing:
+    "minecraft:chest.north":
+        $: Сундук смотрит на север
+    "minecraft:chest.south":
+        $: ЮГ
+    "default":
+        $: Сторона света не определена
+
+########################### nbt ####################################
+
+- data-set:
+    posBlock: "251 65 112"
+  next: true
+  #####################################
+- al: Получаю запрос блока
+  mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "{{posBlock}}" # "251 65 112"
+  next: true
+
+#####################################
+ 
+- mc-get-block-nbt:
+    id: block_id # vnjs.state.data.block_id
+    OwnerName: OwnerName # vnjs.state.data.OwnerName
+    x: posX # vnjs.state.data.posX
+  
+
+- al: "
+      <font color='skyblue'>id</font>: {{block_id}} <br>
+      <font color='skyblue'>OwnerName</font>: {{OwnerName}}<br>
+      <font color='skyblue'>posX</font>: {{posX}}"

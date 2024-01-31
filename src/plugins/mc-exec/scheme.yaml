@@ -1,0 +1,4 @@
+- mc-exec:
+    action: executeCMD
+    data: say TEST # give @p {{item}} {{count}}
+    type: player # server

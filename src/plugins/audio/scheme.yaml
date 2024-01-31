@@ -1,0 +1,65 @@
+
+- audio: theme1
+
+
+- audio:
+    name: audio1
+    action: play
+    speed: 0.3
+    volume: 0.01
+    loop: false
+    onEnd: # Сработает после окончания воспроизведения
+        $: --END--
+# stop
+- audio:
+    name: audio1
+    action: stop
+      
+- audio:
+    name: sysMetronome
+    action: play
+    speed: 2
+    volume: 1
+    fadeIn: 2000
+    loop: true # onLoop срабатывает при каждом цикле воспроизведения.
+    onLoop:
+      data-set:
+        count: +=1
+      $: "{{count}}"
+    #onEnd: # не сработает если loop = true
+
+# pause
+- audio:
+    name: sysMetronome
+    action: pause
+ 
+# Можно задать количество воспроизведения аудио
+- audio:
+    name: menu-item
+    action: play
+    loop: 5 # true # false
+    onLoop: # вызывается при каждом повторении аудио
+      data-set:
+        count: +=1
+      +: "{{count}} "
+    onEnd:  # Сработает просле количества повторений указаного в loop
+      $: --END--
+
+
+# заглучить все звуки
+- audio: false
+######################## sprite
+- audio-sprite:
+    name: test22 # индификатор аудио
+    volume: 1 # необязательный параметр. Настройка уровня звука
+    sprite:
+        sound_1: # произвольный индификатор
+          - 1:08 # начало воспроизведения [ минуты:секунды ]
+          - 0:06 # длительность от начала
+        sound_2: 
+          - 2:05
+          - 0:03
+
+
+
+

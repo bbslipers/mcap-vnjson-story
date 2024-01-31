@@ -1,0 +1,40 @@
+.vnjson__term-board {
+  width: 808px;
+  height: 480px;
+  padding: 25px;
+  background-image: url(./assets/term.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; }
+  .vnjson__term-board pre {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 0; }
+    .vnjson__term-board pre code {
+      padding: 25px;
+      font-size: 24px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      overflow-x: auto; }
+      .vnjson__term-board pre code img {
+        height: 100%; 
+        display: block;
+        margin-left: auto;
+        margin-right: auto; }
+
+
+
+/* term theme */
+
+.vnjson__term-board pre code{
+  font-size: 18px;
+  line-height: 24px;
+}

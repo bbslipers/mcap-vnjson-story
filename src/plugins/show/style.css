@@ -1,0 +1,39 @@
+.vnjson__show-left {
+  position: absolute;
+  left: 50px;
+  bottom: 210px;
+  top: unset;
+  width: 260px;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 2000 
+}
+
+.vnjson__show-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 210px;
+  top: unset;
+  width: 260px;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 2000;
+}
+
+.vnjson__show-right {
+  position: absolute;
+  right: 50px;
+  bottom: 210px;
+  top: unset;
+  width: 260px;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 2000;
+}

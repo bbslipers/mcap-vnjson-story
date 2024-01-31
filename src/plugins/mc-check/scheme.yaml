@@ -1,0 +1,6 @@
+- mc-check: 
+    true:
+      $: true 122222
+
+    false: 
+      $: false 122222

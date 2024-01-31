@@ -1,0 +1,57 @@
+- table:
+    - row:
+      - height: 50
+    - row:
+       - height: 50
+       - text: 
+            content: Aaaa
+            border: '#ff0096' # true 
+            width: 180
+            color-background: black # color-background
+            align-h: right #left #center # right # У изображений выравнивания нет
+            align-v: bottom #top #center # bottom
+            size: 20           
+            exec: 
+               jump: $root.$init
+       - image:
+            name: alice-avatar
+            width: 50
+            exec: 
+               jump: $root.$init
+       - text:
+            content: test
+            border: false
+            width: 150
+    - row:
+       - height: 50
+       - text: 
+            content: $root.$init 
+            width: 150
+            exec: 
+               jump: $root.$init            
+       - image:
+            name: Screenshot_45  # this.label.table[2].row[2].image.name = img
+            width: 250
+            border: cyan
+       - text:
+            content: test
+            width: 150
+    - row:
+       - height: 50
+       - text: 
+            content: Screenshot
+            width: 150
+            exec: 
+               jump: $root.$init            
+       - image:
+            name: Screenshot_45
+            width: 150
+       - text:
+            content: test
+            width: 150
+       - image:
+            name: lake
+            width: 80
+       - image:
+            name: Screenshot_45
+            width: 150

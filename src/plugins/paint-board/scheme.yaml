@@ -1,0 +1,6 @@
+# Наличие ./static/data/board/index.html
+# Наличие ./$root/package.yaml параметра paint-board: true
+# Размер изображениия 800 х 450 px
+
+- paint-board: assetName
+- paint-board: false

@@ -1,0 +1,78 @@
+# PLAYER 
+# BLOCK 
+# SLOT 
+# ENTITY 
+# HAND
+
+- mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "250 65 112"
+    # data: "clear"
+  next: true
+
+
+- mc-get-block:
+     color: color1 # var
+     axis: a1
+     variant: var1
+     facing: fac1
+     "minecraft:wool":
+         switch:
+            color1 === LIGHT_BLUE:
+                $: "Шерсть: <font color='deepskyblue'>{{color1}}</font>"
+     "minecraft:log":
+         $: Дерево
+     "default":
+         $:  DEFAULT
+
+
+#########################################################################################
+#########################################################################################
+
+- mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "250 66 112"
+  next: true
+
+
+- mc-get-block:
+     color: color1 
+     axis: axis_1
+     variant: var1
+     facing: fac5
+     "minecraft:log":
+         switch:
+            var1 === SPRUCE:
+                $: "Вариант: <font color='magenta'>{{var1}}</font>"
+            axis_1 === Y:
+                +: "Ось: <font color='orange'>{{axis_1}}</font>"
+     "minecraft:wool":
+         $: Шерсть
+     "default":
+         $:  DEFAULT
+
+#########################################################################################
+#########################################################################################
+
+- mc-get:
+    request: BLOCK
+    slot: 0
+    pos: "250 67 112"
+  next: true
+
+
+- mc-get-block:
+     color: color2
+     axis: axis_2
+     variant: var2
+     facing: fac2
+     "minecraft:sticky_piston":
+         switch:
+            fac2 === UP:
+                $: "Направление: <font color='magenta'>{{fac2}}</font>"
+     "minecraft:wool":
+         $: Шерсть
+     "default":
+         $:  DEFAULT

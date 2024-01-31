@@ -1,0 +1,20 @@
+.vnjson__brython{
+  top: 45px;
+  left: 50%;
+  width: 810px;
+  height: 480px;
+  overflow: hidden;
+  transform: translateX(-50%);
+  background-image: url(./assets/brython.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#vnjson__brython{
+  top: 23px;
+  left: 50%;
+  width: 758px;
+  height: 430px;
+  overflow: hidden;
+  transform: translateX(-50%);
+}

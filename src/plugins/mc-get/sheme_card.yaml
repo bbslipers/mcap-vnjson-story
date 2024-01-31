@@ -1,0 +1,68 @@
+
+# Получение карты из блоков ['is_mtc:block_monodisplayer', 'is_mtc:block_displayer']
+# или из руки HAND
+- mc-get:
+    request: BLOCK # HAND
+    slot: 0
+    pos: "251 66 112"
+  next: true
+
+###########################
+
+- mc-get-card:
+    slot: 3  # Слот в котором ищется карта. Если это рука, свойство равно 0. Или если блок is_mtc:block_monodisplayerй. то 0б
+    card: cardID # Переменная в которую сохраняется полный идентификатор карты
+    "mng_000 mcap 0": # Полный идентификатор карты
+        $: "Карта найдена <font color='orange'>{{cardID}}</font>"
+    default:
+        +: Не найдено
+
+- al: x x x x
+
+
+######################################################
+#        Поиск карты по cdwd + assetnumber           #
+######################################################
+# Поиск осуществляется по блоку 'is_mtc:block_displayer'
+# И альбому  'is_mtc:binder'
+- mc-get:
+    request: BLOCK # HAND (is_mtc:binder)
+    slot: 0
+    pos: "251 66 112"
+  next: true
+
+###########################
+# Получение карты из блока 'is_mtc:block_displayer'
+# предмета в руках is_mtc:binder (альбом)
+- mc-get-card-item:
+    slot: slot_n # Переменная содезит слот в котором найдена карта
+    card: "mng_000 mcap 0 4"  # cdwd + assetnumber   
+    exec:
+        $: "Карта найдена слот <font color='orange'>{{slot_n}}</font>"
+    default:
+        +: Карта не найдена
+
+
+################################################
+########### Вывод данных карты в новеле ########
+Необходимо создать файл с описанием карт в корне $root/mtcs.yaml
+
+"mng_000 mcap 0 0": #idCard idEdition rarityIndex assetNumber
+  name: "Имя карточки"
+  price: Цена карты
+  image: ИмяАссетаИзображения
+  sound: ИмяАссетаЗвука
+  сategory: "Категория карты"
+  desription: "Описание карты"
+
+####### Запись данных карты в переменные ########
+
+- mc-get-card-info:
+    card: "mng_000 mcap 0 0" # id
+    name: name # var
+    price: price # var
+    сategory: сategory # var
+    desription: desription # var
+
+- al: "{{name}} {{price}} {{сategory}}"
+- +: "{{desription}}"

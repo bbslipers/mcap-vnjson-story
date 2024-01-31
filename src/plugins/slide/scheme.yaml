@@ -1,0 +1,15 @@
+- slide: Screenshot_35
+- slide: false
+
+- slide:
+    name: Screenshot_35
+    css:
+      top: 320px
+      border: 15px dashed orange
+
+# загрузка изображения со стороннего сайта     
+- slide:
+    url: http://app1234.xyz/assets/ship.png
+    css:
+      width: 200px
+      height: 300px

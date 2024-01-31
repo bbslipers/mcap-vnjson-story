@@ -1,0 +1,28 @@
+.vnjson__wiki {
+  left: 10px;
+  top: 40px;
+  width: 300px;
+  height: 400px;
+  display: none;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.5);
+  font-size: 14px;
+  overflow: auto;
+}
+.vnjson__wiki li{
+  padding: 5px 0;
+
+  line-height: 18px;
+    
+}
+.vnjson__wiki-key{
+  color: wheat;
+}
+.vnjson__wiki-dash{
+  padding: 0 5px;
+  color: silver;
+}
+.vnjson__wiki-value{
+  color: darkgray;
+}

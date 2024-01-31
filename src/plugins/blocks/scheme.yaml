@@ -1,0 +1,298 @@
+
+# ANIMATION TYPES
+#
+# moveTo
+# zoom
+# fadeIn
+# fadeOut
+#
+# slideUp
+# slideLeft 
+# slideDown
+# slideRight 
+#
+# showUp
+# showDown
+# showLeft 
+# showRight 
+# sizeTo
+# rotate # принимает число  градусов, на сколько нужно повернуть изображение.
+
+
+# В sizeTo и moveTo можно запихать переменные в параметры width/height/top/left
+
+  blocks: 
+      - image: Patterns # Изображение отоброжаемое в на экране
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 0
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: slideUp # Тип анимации
+          duration: 500 # Длительность анимации
+          onEnd: # vnjs.exec(ctx) Данная функция вызовется по оканчанию воспроизведения анимации 
+            $: Конец воспроизведения анимации slideUp
+
+      - image: ab12-53
+        id: test1
+        z-index: 3
+        timeout: 1000
+        width: 80px
+        height: 100px
+        top: 200px
+        left: 600px
+        animation: 
+          type: slideDown
+          duration: 800
+          onEnd:
+            $: Конец воспроизведения анимации slideDown
+
+      - image: index.jpg3
+        #id: test3
+        #z-index: 3
+        timeout: 2000
+        width: 100px
+        height: 100px
+        top: 50px
+        left: 50px
+        animation: 
+          type: slideRight
+          duration: 1000
+          onEnd:
+            $: Конец воспроизведения анимации slideRight
+
+
+
+      - image: '153613243915957922'
+        id: test1
+        timeout: 3000 
+        width: 80px
+        height: 130px
+        top: 300px
+        left: 800px
+        animation: 
+          type: slideLeft
+          duration: 1000
+          #onEnd:
+          #  $: Конец воспроизведения анимации slideLeft
+
+      - image: pokeball
+        id: test1
+        timeout: 4000
+        width: 100px
+        height: 100px
+        top: 450px
+        left: 100px
+        animation: 
+          type: moveTo
+          duration: 3000
+          left: +=750px # += означает прибавить к текущему значению 750px
+          top: -=400px # можно указать один параметр, если нужна анимация по одной оси
+          onEnd:
+            sound: sysFlipPages
+            $: Конец воспроизведения анимации moveTo
+
+      - image: map
+        id: test1
+        timeout: 4000
+        width: 100px
+        height: 100px
+        top: 120px
+        left: 120px
+        animation: 
+          type: moveTo
+          duration: 3000
+          top: 400px
+
+      - image: superball
+        id: test1
+        timeout: 4000
+        width: 100px
+        height: 100px
+        top: 300px
+        left: 900px
+        animation: 
+          type: moveTo
+          duration: 2000
+          left: 150px
+          top: 50px
+
+
+- blocks: 
+      - image: Patterns
+        id: test1
+        timeout: 0
+        width: 130px
+        height: 180px
+        top: 100px
+        left: 400px
+        animation: 
+          type: zoom
+          duration: 3000
+          value: 0.2 # размер стандарного изображения = 1
+          onEnd:
+            $: test test
+
+      - image: index.jpg3
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 50px
+        left: 50px
+        animation: 
+          type: fadeIn
+          duration: 1000
+
+      - image: map
+        id: test1
+        timeout: 2000
+        width: 100px
+        height: 100px
+        top: 200px
+        left: 50px
+        animation: 
+          type: fadeOut
+          duration: 3000
+
+################################
+# STEP
+- blocks-step:
+    id: test1
+    image: ev # false - скрывает изображение
+    animation: 
+      type: moveTo
+      duration: 2000
+      left: 150px
+      top: 50px
+
+  al: STEP 1
+
+- blocks-step:
+    id: test1
+    image: ch  #false
+    z-index: 5
+    animation: 
+        type: moveTo
+        duration: 1000
+        left: +=100px
+
+  al: STEP 2
+
+- blocks-step:
+        id: test1
+        #image: ev
+        #z-index: 1
+        animation: 
+          type: moveTo
+          duration: 1000
+          left: -=100px
+  al: STEP 3
+
+- blocks-step:
+        id: test2
+        image: ch
+        animation: 
+          type: zoom
+          duration: 1000
+          value: 0.5
+  al: STEP 4
+
+- blocks-step:
+        id: test2
+        image: p1
+        animation: 
+          type: slideLeft
+          duration: 1000
+
+
+
+################## show
+
+- blocks: 
+      - image: ev # Изображение отоброжаемое в на экране
+        id: test0 # Индификатор для управления через blocks-step
+        z-index: 0
+        timeout: 0 # Задержка начала воспроизведения анимации
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 10px
+        animation: 
+          type: showUp # Тип анимации
+          duration: 2000 # Длительность анимации
+
+      - image: ev
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 10px
+        left: 180px
+        animation: 
+          type: showDown
+          duration: 2000
+
+      - image: ev
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 10px
+        animation: 
+          type: showLeft
+          duration: 2000
+      - image: ev
+        id: test1
+        z-index: 3
+        timeout: 0
+        width: 150px
+        height: 150px
+        top: 180px
+        left: 180px
+        animation: 
+          type: showRight
+          duration: 2000
+
+### sizeTo
+- blocks: 
+      - image: alice
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 400px
+        animation: 
+          type: sizeTo
+          duration: 1000
+          width: "{{width}}px"
+          height: 300px
+# STEP
+- blocks-step:
+    id: test1
+    image: alice # false - скрывает изображение
+    animation: 
+      type: sizeTo
+      duration: 1000
+      width: 50px
+      height: 100px
+# rotate
+- blocks: 
+      - image: alice
+        id: test1
+        timeout: 0
+        width: 100px
+        height: 100px
+        top: 100px
+        left: 100px
+        animation: 
+          type: rotate
+          duration: 500
+          value: 180

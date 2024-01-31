@@ -1,0 +1,7 @@
+port: 9000
+src: src
+updateSrc: 
+  url: https://github.com/mcap-2020/mcap-vnjson-story/archive/refs/heads/main.zip
+  dir: mcap-vnjson-story
+updateDirs:
+  - src

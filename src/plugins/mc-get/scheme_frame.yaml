@@ -1,0 +1,14 @@
+
+- mc-get:
+    request: ENTITY
+    slot: 0
+    pos: "244 65 111"
+  next: true
+
+
+- mc-get-frame-item:
+    damage: damage1
+    "minecraft:planks":
+        $: Доски
+    "default":
+        +: не найдено

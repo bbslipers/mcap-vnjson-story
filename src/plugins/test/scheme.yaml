@@ -1,0 +1,98 @@
+- test:
+    name: Название теста
+    type: TrueFalse
+    self-control: true
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок
+          - На пальмы
+          - На солнце
+
+      - quetion: Что в Российской империи было вещевым эквивалентом денег?
+        image: c71c347ae # Можно передать изображение вкачестве илюстрации к вопросу
+        correct: 1
+        audio: sysFlipPages
+        variants:
+          - Шкуры пушных зверей
+          - Крупный рогатый скот
+          - Табак
+          - Женские серьги
+
+      - quetion: Кто из знаменитых художников за жизнь продал всего одну картину? 
+        correct: 1
+        variants:
+          - Винсент Ван Гог
+          - Пьер Огюст Ренуар
+
+
+
+- test: false
+
+
+## По прохождению теста срабатывает плагин [ next ]
+
+# STYLES
+- test:
+    name: Название теста
+    type:  TrueFalse
+    self-control: 1500 # Можно задать время появления статуса ответа #true #false
+    color-background: 'gray'
+    color-item: 'black'  #Цвет фона плашки
+    color-item-correct: '#0d88f7' #Цвет фона верного
+    color-item-incorrect: '#ff0c9b' #Цвет фона неверного
+    color-result: orange # Цвет окошка с результатами
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        image: c71c347ae
+        correct: 3
+        audio: sysFlipPages
+        variants:
+          - На песок
+          - На пальмы
+          - На солнце
+
+
+##################################### type SummText ##################################
+
+- test:
+    name: Название теста
+    self-control: true
+    result: false # скрыть окно результата
+    type:  SummText # TrueFalse
+    onEnd:
+      data-set: 
+         textTest: "Результат первого {{summTest}} теста" 
+         imgTest: items
+         summData: false # скрыть блоки с верно/не верно/результат
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок: 3
+          - На пальмы: 10
+          - На солнце: 100
+
+
+
+##################################### type SummText ##################################
+- test:
+    name: Название теста
+    self-control: true
+    #result: false
+    type:  SummText # TrueFalse
+    onEnd:
+      data-set: 
+         textTest: "Результат первого {{summTest}} теста" 
+         imgTest: items
+         summ1: "{{summTest}}"
+    quetions:
+      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+        correct: 3
+        variants:
+          - На песок: 3
+          - На пальмы: 10
+          - На солнце: 100
+
+

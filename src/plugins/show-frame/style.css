@@ -1,0 +1,38 @@
+.vnjson__show-frame{
+  z-index: 500;
+  width: 800px;
+  height: 400px;
+  flex-wrap: wrap;
+  top: unset;
+  bottom: 290px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+  border: 1px solid rgba(200, 200, 200, 0.1);
+}
+
+.vnjson__show-frame__cell{
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 50%;
+  height: 50%;
+  border: 1px solid rgba(200, 200, 200, 0.1);
+}
+.vnjson__show-frame__cell:nth-child(1){
+    background-position: 0px 0px;
+}
+.vnjson__show-frame__cell:nth-child(2){
+  background-position: -400px 0px;
+
+}
+.vnjson__show-frame__cell:nth-child(3){
+  background-position: 0px -200px;
+}
+.vnjson__show-frame__cell:nth-child(4){
+  background-position: -400px -200px;
+
+}
+.filter-blur{
+  filter: blur(20px);
+}

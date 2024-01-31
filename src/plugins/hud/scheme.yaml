@@ -1,0 +1,73 @@
+# show
+- hud: true
+- hud: false
+
+# status bars
+- hud-left: 17%
+
+- hud-left: 70%
+- hud-left: 40%
+
+- hud-right: 20%
+- hud-right: 40%
+- hud-right: 90%
+
+# variables
+# В качестве значения плагина hud-right, можно передать имя переменной ( HP )
+- $: set HP 70%
+  data-set:
+    HP: 70%
+    
+- hud-right: HP
+
+- $: RIGHT 70% 
+  hud-right: HP
+
+- $: set HP 30%
+  data-set:
+    HP: 30%
+
+- $: RIGHT 30% 
+  hud-right: HP
+
+- $: set HP 10% 
+  data-set:
+    HP: 10%
+
+- $: RIGHT 10% 
+  hud-right: HP
+
+# inventory
+
+- hud-inv:
+    slot: 1
+    icon: pokeball
+
+- hud-inv:
+    slot: 2
+    icon: map
+- hud-inv:
+    slot: 3
+    icon: pokeball
+
+- hud-inv:
+    slot: 4
+    icon: map
+    exec:
+      scene: ch
+- hud-inv:
+    slot: 1
+    icon: false
+
+- hud-inv:
+    slot: 2
+    icon: false
+- hud-inv:
+    slot: 3
+    icon: false
+    
+- hud-inv:
+    slot: 4
+    icon: false
+
+###########################

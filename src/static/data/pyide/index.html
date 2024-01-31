@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Brython 3.11.3</title>
+        <script type="text/javascript" src="brython.js"></script>
+        <script type="text/javascript" src="stdlib.js"></script>
+        <style type="text/css">
+          @font-face {
+            font-family: Firacode;
+            src: url(fonts/Firacode.ttf); 
+          }
+          @font-face {
+            font-family: Terminess;
+            src: url(fonts/Terminess.ttf);
+          }
+          *{
+            box-sizing: border-box;
+          }
+          html, body {
+            width: 758px;
+            height: 430px;
+
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1e1e1e;
+          }
+          a:link, a:visited { color: #69c; text-decoration: none; }
+
+          #page 
+          #content 
+          .vs-dark 
+          .lines-content 
+          .view-lines{
+            font-size: 15px !important;
+            ine-height: 17px !important;
+            font-family: Firacode !important;
+          }
+          #controls{
+            background-color: #1e1e1e;
+            border-top: 1px solid rgba(250,200, 200,0.1);
+          }
+          .buttons{
+            display: flex;
+            align-items: center;
+            padding: 5px 10px 5px 0;
+            justify-content: space-between;
+          }
+          .buttons-group{
+            display: flex;
+            align-items: center;
+          }
+          .button {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+
+            cursor: pointer;
+            text-decoration: none;
+          }
+          .button:hover {
+            filter: brightness(150%);
+            text-decoration: none;
+          }
+          #page {
+            width: 758px;
+            height: 430px;
+            background-color: #1e1e1e;
+            font-size: 15px;
+            line-height: 17px;
+            font-family: Terminess;
+          }
+          #content {
+            width: 758px;
+            height: 390px;
+            overflow: hidden;
+          }
+          #input {
+            top: 2px;
+            left: 2px;
+            width: 754px;
+            height: 386px;
+            resize: none;
+            border: none;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            background-color: #1e1e1e;
+          }
+          #input::-webkit-scrollbar {
+              display: none;
+          }
+          #output {
+            top: 2px;
+            left: 2px;
+            width: 754px;
+            height: 386px;
+            resize: none;
+            display: none;
+            border: 0;
+            outline: none;
+            color: white;
+            background-color: #1e1e1e;
+            font-size: 15px;
+            line-height: 17px;
+            font-family: Firacode;
+          }
+          #repl {
+            top: 0px;
+            left: 0px;
+            width: 758px;
+            height: 390px;
+            resize: none;
+            border: none;
+            display: none;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            color: white;
+            background-color: #1e1e1e;
+            font-size: 15px;
+            line-height: 17px;
+            font-family: Firacode;
+          }
+          #repl::-webkit-scrollbar {
+              display: none;
+          }
+          #screen {
+            top: 2px;
+            left: 2px;
+            width: 754px;
+            height: 386px;
+            resize: none;
+            border: none;
+            display: none;
+            overflow: hidden;
+            position: absolute;
+          }
+          #scr_html {
+            top: 2px;
+            left: 2px;
+            width: 754px;
+            height: 386px;
+            resize: none;
+            border: none;
+            overflow: hidden;
+            position: absolute;
+            color: white;
+            font-size: 15px;
+            line-height: 17px;
+            font-family: Firacode;
+          }
+          #scr_canvas {
+            top: 2px;
+            left: 2px;
+            width: 754px;
+            height: 386px;
+            resize: none;
+            border: none;
+            overflow: hidden;
+            position: absolute;
+            color: white;
+            font-size: 15px;
+            line-height: 17px;
+            font-family: Firacode;
+          }
+          .decorationsOverviewRuler{
+            display: none;
+          }
+        </style>
+    </head>
+    <body onload=brython() >
+      <div id="page">
+        <div id="content">
+          <div id="input"></div>
+          <textarea id="output" readonly></textarea>
+          <div id="screen">
+            <div id="scr_html"></div>          
+            <canvas id="scr_canvas" height='386' width='754'></canvas>
+          </div>
+          <div id="repl" contenteditable></div>
+        </div>
+        <div id="controls">
+          <div class="buttons">
+            <img src="icons/execute.svg" id="exec" type="button" class="button" onclick="doExec();">
+            <div class="buttons-group">
+                <img src="icons/input.svg" type="button" class="button" onclick="doShowInput();">
+                <img src="icons/output.svg" type="button" class="button" onclick="doShowOutput();">
+                <img src="icons/screen.svg" type="button" class="button" onclick="doShowScreen();">
+                <img src="icons/console.svg" type="button" class="button" onclick="doShowConsole();">
+                <img src="icons/refresh.svg" type="button" class="button" onclick="doRefreshAll();">
+            </div>
+          </div>
+        </div>
+      </div>
+      <script type="text/python3">
+        import sys
+        import time
+        from interpreter import Interpreter
+        from browser import document, window, alert, bind, html
+        
+        ver = 'Brython 3.12.0'
+        repl = Interpreter("repl")
+        repl.clear()
+        repl.insert(ver)
+        repl.insert_cr()
+        repl.insert_prompt()
+        repl.cursor_to_end()
+
+        class OutputTerm:
+          encoding = 'utf-8'
+          def __init__(self):
+              self.output = document["output"]
+              self.buf = ''
+          def write(self, data):
+              self.buf += str(data)
+          def flush(self):
+              self.output.value += self.buf
+              self.buf = ''
+          def __len__(self):
+              return len(self.buf)
+
+        stdouterr = OutputTerm()
+        sys.stdout = stdouterr
+        sys.stderr = stdouterr
+
+        editor = window.ace.edit("input")
+        editor.setShowPrintMargin(False)        
+        editor.setTheme("ace/theme/monokai")
+        editor.session.setMode("ace/mode/python")
+        editor.setOptions({
+          'fontSize': '15px',
+          'fontFamily': 'Firacode',
+          'highlightActiveLine': False,
+          'highlightSelectedWord': True,
+          'enableLiveAutocompletion': True
+        })
+        editor.focus()
+
+
+        #class MyOutput:
+        #  def __init__(self):
+        #    self.output = document["output"]
+        #  def write(self, text):
+        #    self.output.text += text
+        #sys.stdout = MyOutput()
+
+
+
+
+
+
+        def focusConsole():
+          repl.cursor_to_end()
+          repl.focus()
+
+        def clearConsole():
+          repl.clear()
+          repl.insert(ver)
+          repl.insert_cr()
+          repl.insert_prompt()
+          repl.cursor_to_end()
+          repl.focus()
+
+
+        def execInput():
+          msg = ''
+          state = 1
+          t0 = time.perf_counter()
+          try:
+            exec(editor.getValue(),{'__name__':'__main__', '__file__':'editor'})
+            clearConsole()
+          except Exception as e:
+            state = 0
+          t1 = time.perf_counter()
+
+        def focusInput():
+          editor.focus()
+
+        def clearInput():
+          editor.setValue('')
+
+        def insertInput(text):
+          editor.setValue(str(text))
+          editor.getSession().selection.clearSelection()
+          focusInput()
+
+        window.execInput = execInput
+        window.focusInput = focusInput
+        window.clearInput = clearInput
+        window.insertInput = insertInput
+        window.focusConsole = focusConsole
+        window.clearConsole = clearConsole
+      </script>
+      <script src="ace/ace.min.js"></script>
+      <script src="ace/ext-language_tools.min.js"></script>
+      <script src="ace/theme-monokai.min.js"></script>
+      <script src="ace/mode-python.min.js"></script>
+      <script type="text/javascript">
+        let showInput = true;
+        let showOutput = false;
+        let showScreen = false;
+        let showConsole = false;
+        
+        var input = document.getElementById('input');
+        var output = document.getElementById('output');
+        var screen = document.getElementById('screen');
+        var scr_html = document.getElementById('scr_html');
+        var scr_canvas = document.getElementById('scr_canvas');
+        
+        function doShowInput() {
+          showInput = true;
+          showOutput = false;
+          showScreen = false;
+          showConsole = false;
+          document.querySelector('#repl').style.display = 'none';
+          document.querySelector('#input').style.display = 'block';
+          document.querySelector('#output').style.display = 'none';
+          document.querySelector('#screen').style.display = 'none';
+          focusInput();
+        }
+        function doShowOutput() {
+          showInput = false;
+          showOutput = true;
+          showScreen = false;
+          showConsole = false;
+          document.querySelector('#repl').style.display = 'none';
+          document.querySelector('#input').style.display = 'none';
+          document.querySelector('#output').style.display = 'block';
+          document.querySelector('#screen').style.display = 'none';
+        }
+        function doShowScreen() {
+          showInput = false;
+          showScreen = true;
+          showOutput = false;
+          showConsole = false;
+          document.querySelector('#repl').style.display = 'none';
+          document.querySelector('#input').style.display = 'none';
+          document.querySelector('#output').style.display = 'none';
+          document.querySelector('#screen').style.display = 'block';
+        }
+        function doShowConsole() {
+          showInput = false;
+          showOutput = false;
+          showScreen = false;
+          showConsole = true;
+          document.querySelector('#repl').style.display = 'block';
+          document.querySelector('#input').style.display = 'none';
+          document.querySelector('#output').style.display = 'none';
+          document.querySelector('#screen').style.display = 'none';
+          focusConsole();
+        }
+        function doRefreshAll() {
+          if (showInput === true) {
+            clearInput();
+          }
+          if (showOutput === true) {
+            output.value = '';
+          }
+          if (showScreen === true) {
+            scr_html.innerHTML = ''
+            let context = scr_canvas.getContext('2d');
+            context.clearRect(0, 0, scr_canvas.width, scr_canvas.height);
+          }
+          if (showConsole === true) {
+            clearConsole();
+          }
+        }
+        
+        const blank = document.createElement('canvas');
+        blank.style.display = 'none';
+        function doExec () {
+          output.value = '';
+          scr_html.innerHTML = ''
+          let context = scr_canvas.getContext('2d');
+          context.clearRect(0, 0, scr_canvas.width, scr_canvas.height);
+
+          execInput();
+
+          blank.width = scr_canvas.width;
+          blank.height = scr_canvas.height;
+          if (scr_canvas.toDataURL() === blank.toDataURL() && scr_html.innerHTML === ''){
+            doShowOutput();
+          }else{
+            doShowScreen();
+          }
+        }
+
+        window.addEventListener("message", event=>{
+          insertInput(event.data.file);
+        })
+      </script>
+    </body>
+</html>

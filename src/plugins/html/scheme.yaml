@@ -1,0 +1,25 @@
+
+# кусочки html необходимо разместить в файле ./src/scenes/$root/html.yaml
+htmlChunk: <a class="qr-code" href="http://qrcoder.ru" target="_blank"><img src="http://qrcoder.ru/code/?http%3A%2F%2Fatlant.mcacademy.ru%3A9000%2F&10&0" width="370" height="370" border="0" title="QR код"></a>
+redBox: <div class="red-box"></div>
+yt-salut: <iframe width="100%" height="100%" src="https://www.youtube.com/embed/a_o-P-lIDEA?start=50"></iframe>
+
+
+# вызывается из скрипта
+- htmlChunk: true
+  redBox: true
+
+
+- htmlChunk: false
+  redBox: false
+
+# так же можно передать css объект
+- htmlChunk:
+    css: 
+      top: 50px
+      left: 100px
+
+# при последующем вызове плагина
+# указывать стили уже не обязательно
+# он замомнит, стили ранее указанные
+- htmlChunk: false

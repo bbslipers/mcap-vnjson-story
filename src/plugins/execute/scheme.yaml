@@ -1,0 +1,6 @@
+# Выполняет список плагинов с одинаковыми ключами
+- execute:
+    - log: TEST 1
+    - log: TEST  2
+    - log: TEST   3
+    - log: TEST    4

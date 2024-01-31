@@ -1,0 +1,41 @@
+# Переменная {{pageNumber}} хранит номер страницы
+- mc-get:
+    request: HAND
+    slot: 0 
+    pos: "0 0 0"
+  next: true
+
+# получаем книгу целиком
+- mc-get-book:
+    title: title_1 # Название книги
+    pages: pages_len # Количество страниц
+    author: author_name # Автор книги
+    book-text: bookText # Весь текст кники (с разделением по страницам)
+    # если не указано или page-break: false - то ни чего не вставляет
+    page-break: "<font color='gray'>*** {{pageNumber}} ***</font>" 
+    # выполняется при выводе каждой страницы
+    onPage:
+      scene: paintBoard
+  next: true
+
+- $: "title: {{ title_1}}
+     <br>author: {{ author_name}}
+     <br>pages: {{ pages_len}}
+     "
+- $: "{{bookText}}"
+
+########################################
+# Получаем конкретную страницу из книге которая в рамке
+- mc-get:
+    request: ENTITY #frame
+    slot: 0
+    pos: "244 65 111"
+  next: true
+###########################
+
+- mc-get-book-page:
+    page: 2 # Номер страницы
+    page-text: pageText # Текст страницы
+  next: true
+- "{{pageText}}"
+- al: x x x x
