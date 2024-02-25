@@ -22,3 +22,9 @@
   name: player
   nameColor: '#00B2EB'
   replyColor: '#00B2EB'
+
+- id: author
+  name:
+  avatar: author
+  nameColor: '#D9D9D9'
+  replyColor: '#D9D9D9'

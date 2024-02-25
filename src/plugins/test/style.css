@@ -172,3 +172,18 @@
   color: white;
 }
 
+.vnjson__test-restart-btn{
+  background-color: burlywood;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 10px 10px;
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  margin-top: 10px;
+}
+.vnjson__test-next-btn:hover{
+  background-color: darkslateblue;
+  color: white;
+}

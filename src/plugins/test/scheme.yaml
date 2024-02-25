@@ -3,7 +3,12 @@
     type: TrueFalse
     self-control: true
     quetions:
-      - quetion: Туристы, приезжающие на Майорку, обязаны заплатить налог
+      - quetion: Туристы, приезжающие на Мальорка, обязаны заплатить налог
+        info: Мальорка — самый крупный из Балеарских островов
+        right: Все верно
+        right-time: 3        
+        wrong: Вы ошиблись
+        wrong-time: 3000
         correct: 3
         variants:
           - На песок

@@ -1,4 +1,5 @@
 scale: 1.0
+debug: false
 preload: true
 font-family: liberation
 
@@ -20,8 +21,15 @@ dialog-box:
   mode-classic: dialog-box
   mode-fullscreen: dialog-box-full
 
+paint-board: false
+chess-board: false
+brython-ide: false
+
 publish:
   host: http://vnjson.mcap.fun
   token: 00000000000000000000000000000000
 
 url-db: http://vnjson.mcap.fun/reindexer/api/v1/db/mcap_vnjson_store
+
+discord-log:
+  webhook: https://discord.com/api/webhooks/000000000000000000/0000000000000000000000_0000000000000000000000000000000000000000000000

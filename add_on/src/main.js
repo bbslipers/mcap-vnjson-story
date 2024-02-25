@@ -1,11 +1,9 @@
 import './theme.css'
-// jump
-// next
-// timeout
+/* jump, next, timeout */
 
 /* debug */
-//import debug from "./plugins/debug/index.js";
-//import debugUtils from "./plugins/debug-utils/index.js";
+import debug from "./plugins/debug/index.js";
+import debugUtils from "./plugins/debug-utils/index.js";
 
 /* basic */
 import assetsLoader from "./plugins/assets-loader/index.js";
@@ -30,7 +28,7 @@ import voice from "./plugins/voice/index.js";
 import html from "./plugins/html/index.js";
 import term from "./plugins/term/index.js";
 import test from "./plugins/test/index.js";
-//import discordLog from "./plugins/discord-log/index.js";
+import discordLog from "./plugins/discord-log/index.js";
 
 // minecraft
 import mcPlayer from "./plugins/mc-player/index.js";
@@ -44,21 +42,21 @@ import area from "./plugins/area/index.js";
 import blocks from "./plugins/blocks/index.js";
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
-//import spriteAnimate from './plugins/sprite-animate/index.js';
+//import filter from "./plugins/filter/index.js";
+import spriteAnimate from './plugins/sprite-animate/index.js';
 import getLocalTime from './plugins/get-localtime/index.js';
 import intervalVnjson from './plugins/interval/index.js';
 import getData from './plugins/get-data/index.js';
 import HUD from "./plugins/hud/index.js";
 
 import zimjs from './plugins/zimjs/index.js';
+import typewrite from './plugins/typewrite/index.js';
 import showFrame from './plugins/show-frame/index.js';
 import dragItems from './plugins/drag-items/index.js';
 import selectWord from './plugins/select-word/index.js';
-
-//import typewrite from './plugins/typewrite/index.js';
-//import paintBoard from './plugins/paint-board/index.js';
-//import chessBoard from './plugins/chess-board/index.js';
-//import brythonIDE from './plugins/brython-ide/index.js';
+import paintBoard from './plugins/paint-board/index.js';
+import chessBoard from './plugins/chess-board/index.js';
+import brythonIDE from './plugins/brython-ide/index.js';
 
 
 
@@ -90,7 +88,7 @@ vnjs.use(voice);
 vnjs.use(html);
 vnjs.use(term);
 vnjs.use(test);
-//vnjs.use(discordLog);
+vnjs.use(discordLog);
 
 // minecraft
 vnjs.use(mcPlayer);
@@ -103,51 +101,53 @@ vnjs.use(area);
 vnjs.use(blocks);
 vnjs.use(dialogBoxInfo);
 vnjs.use(executeVnjson);
-//vnjs.use(spriteAnimate);
+//vnjs.use(filter);
+vnjs.use(spriteAnimate);
 vnjs.use(getLocalTime);
 vnjs.use(intervalVnjson);
 vnjs.use(getData);
 vnjs.use(HUD);
 
+// Zimjs, Typewrite, Show Frame,
+// Drag Items, Select Word, Paint Board, Chess Board, Brython IDE
 vnjs.use(zimjs);
+vnjs.use(typewrite);
 vnjs.use(showFrame);
 vnjs.use(dragItems);
 vnjs.use(selectWord);
-
-//vnjs.use(typewrite);
-//vnjs.use(paintBoard);
-//vnjs.use(chessBoard);
-//vnjs.use(brythonIDE);
+vnjs.use(paintBoard);
+vnjs.use(chessBoard);
+vnjs.use(brythonIDE);
 
 
 
 // Load scenes
-//function showError (err){
-//  const $errorWindow =  $(".debug-error");
-//  $errorWindow.show();
-//  const $errorMessageContainer = $errorWindow.find(".debug-error__msg")
-//  const yamlError = vnjs._loadError();
-//  if(yamlError){
-//    $errorMessageContainer.html(yamlError.msg);
-//    $errorWindow.find('.debug-error__pos').html(yamlError.pos);
-//    $errorWindow.find('.debug-error__path').html(yamlError.path);
-//    $errorWindow.find('.debug-error__code').html(yamlError.snippet);
-//  }else{   
-//    $errorMessageContainer.html("Невалидный скрипт " +  err.message);
-//  }
-//}
+function showError (err){
+  const $errorWindow =  $(".debug-error");
+  $errorWindow.show();
+  const $errorMessageContainer = $errorWindow.find(".debug-error__msg")
+  const yamlError = vnjs._loadError();
+  if(yamlError){
+    $errorMessageContainer.html(yamlError.msg);
+    $errorWindow.find('.debug-error__pos').html(yamlError.pos);
+    $errorWindow.find('.debug-error__path').html(yamlError.path);
+    $errorWindow.find('.debug-error__code').html(yamlError.snippet);
+  }else{   
+    $errorMessageContainer.html("Невалидный скрипт " +  err.message);
+  }
+}
 
 fetch(`scenes/vn.json?v=${new Date().getTime()}`)
   .then((r) => r.json())
   .then((tree) => {
     vnjs.mount(tree)
-//    if (tree.$root.package.debug) {
-//      vnjs.use(debug);
-//      vnjs.use(debugUtils);
-//      }
+    if (tree.$root.package.debug) {
+      vnjs.use(debug);
+      vnjs.use(debugUtils);
+      }
   })
   .catch((err) => {
-//    showError(err);
+    showError(err);
     console.error("Invalid script", err.message);
   });
 
