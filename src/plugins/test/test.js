@@ -181,6 +181,9 @@ class Test {
                 this.answers.push({ answer: true, quetion: this._quetionItem });
                 if (this._quetionItem?.right) {  
                     $(".dialog-box__reply").html(this._quetionItem.right);
+                    if (this._quetionItem?.pause) {
+                        this.pause = this._quetionItem.pause;
+                    }
                 }
             } else {
                 if (this.args["self-control"]) {
@@ -197,11 +200,11 @@ class Test {
                 ++vnjs.state.data.falseAnswer;
                 this.answers.push({ answer: false, quetion: this._quetionItem });    
                 if (this._quetionItem?.wrong) {
-                    $(".dialog-box__reply").html(this._quetionItem.wrong);   
+                    $(".dialog-box__reply").html(this._quetionItem.wrong);
+                    if (this._quetionItem?.pause) {
+                        this.pause = this._quetionItem.pause;
+                    }                       
                 }
-            }
-            if (this._quetionItem?.pause) {
-                this.pause = this._quetionItem.pause;
             }
             this.click = false;
             this.applyStyles();
