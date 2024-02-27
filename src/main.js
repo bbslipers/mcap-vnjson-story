@@ -11,9 +11,17 @@ import './theme.css'
 import assetsLoader from "./plugins/assets-loader/index.js";
 import screen from "./plugins/screen/index.js";
 import fontFamily from "./plugins/font-family/index.js";
+
+
 import data from "./plugins/data/index.js";
 import dialogBox from "./plugins/dialog-box/index.js";
 import audio from "./plugins/audio/index.js";
+
+import hands from "./plugins/hands/index.js";
+import voice from "./plugins/hands-voice/index.js";
+import content from "./plugins/hands-content/index.js";
+
+
 import menu from "./plugins/menu/index.js";
 import mainMenu from "./plugins/main-menu/index.js";
 import show from "./plugins/show/index.js";
@@ -25,8 +33,6 @@ import switchVnjson from "./plugins/switch/index.js";
 import input from "./plugins/input/index.js";
 import wiki from "./plugins/wiki/index.js";
 import slide from "./plugins/slide/index.js";
-import content from "./plugins/content/index.js";
-import voice from "./plugins/voice/index.js";
 import html from "./plugins/html/index.js";
 import term from "./plugins/term/index.js";
 import test from "./plugins/test/index.js";
@@ -38,7 +44,6 @@ import mcExec from "./plugins/mc-exec/index.js";
 import mcGet from "./plugins/mc-get/index.js";
 import mcCheck from "./plugins/mc-check/index.js";
 //
-import hands from "./plugins/hands/index.js";
 import video from "./plugins/video/index.js";
 import area from "./plugins/area/index.js";
 import blocks from "./plugins/blocks/index.js";
@@ -69,6 +74,9 @@ import selectWord from './plugins/select-word/index.js';
 vnjs.use(assetsLoader);
 vnjs.use(screen);
 vnjs.use(fontFamily);
+
+
+
 /*components*/
 vnjs.use(scene);
 vnjs.use(show);
@@ -84,13 +92,14 @@ vnjs.use(switchVnjson);
 vnjs.use(input);
 vnjs.use(wiki);
 vnjs.use(slide);
-vnjs.use(hands);
-vnjs.use(content);
-vnjs.use(voice);
 vnjs.use(html);
 vnjs.use(term);
 vnjs.use(test);
 //vnjs.use(discordLog);
+
+vnjs.use(hands);
+vnjs.use(voice);
+vnjs.use(content);
 
 // minecraft
 vnjs.use(mcPlayer);

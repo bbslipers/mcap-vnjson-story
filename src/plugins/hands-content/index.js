@@ -1,6 +1,6 @@
 import './style.css'
-import icoContent from './assets/icoContent.jpg'
-import Content from './Content.js'
+import icoContent from './assets/content.jpg'
+import Content from './content.js'
 
 const $tpl = $(`<ul class="vnjson__stage component"></ul>`)
 
@@ -68,7 +68,3 @@ export default function (){
     content.hide()
   })
 }
-
-
-
-
