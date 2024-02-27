@@ -5,8 +5,8 @@
   background: #333;
   width: 70%;
   padding: 5px;
-  height: 518px;
-  top: 30px;
+  height: 500px;
+  top: 24px;
   overflow: auto;
   border-radius: 4px;
 }
@@ -29,7 +29,7 @@
   margin-bottom: 5px;
 
 }
-/*Том*/
+
 .stage-vol{
   padding: 10px;
 
@@ -48,7 +48,6 @@
   border-radius: 4px;
 }
 
-/*Глава*/
 .stage-child{
   color: darkcyan;
   padding: 10px;
