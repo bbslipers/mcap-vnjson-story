@@ -1,4 +1,4 @@
-import voice from './assets/voice.jpg'
+import voice_jpg from './assets/voice.jpg'
 
 export default function (){
   let prev = null
@@ -6,7 +6,7 @@ export default function (){
 
   vnjs.on('hands-voice', data => {
     if(data){
-      $('.vnjson__hand-left').css('background-image', `url(${voice})`)
+      $('.vnjson__hand-left').css('background-image', `url(${voice_jpg})`)
       this.store.handsvoice = data
       INDEX = this.state.index
       prev = data
