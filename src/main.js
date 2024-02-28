@@ -1,4 +1,5 @@
 import './theme.css'
+
 // jump
 // next
 // timeout
@@ -162,9 +163,9 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
 
 vnjs.on("postload", function () {
   vnjs.config = {
-    debug: vnjs.package.debug,
     width: 1024,
     height: 768,
+    debug: vnjs.package.debug,    
   };
 
   // ?jump=scene

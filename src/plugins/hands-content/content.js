@@ -32,7 +32,7 @@ class Content {
         this.data = this.getData();
         this.data.forEach( (item, parentIndex) => {
             const $parent = $(`<li class="stage-parent state-parent-${ parentIndex}"><div class="stage-vol stage-item"></div><ul class="stage-children"></ul></li>`);
-            
+
             if(item.disabled){ 
                 this.disabled(item.disabled, $parent);
             }
@@ -82,16 +82,16 @@ class Content {
 
     disabled (obj, $node){
         if(typeof obj ==='object'){
-            for(let key in obj){
-                const _data = this.__vnjs.state.data[key];
-                const [ min, max ] = obj[key];
-                if( Array.isArray( obj[key] ) ){
-                    if( min<=_data&&_data<=max ){
+            for(let key in obj){                 
+                const value = this.__vnjs.state.data[key];             
+                if(Array.isArray(obj[key])){
+                    const [ min, max ] = obj[key];
+                    if( min <= value && value <= max ){
                         $node.addClass('disabled');
                     }
                 }
-                if(typeof obj[key] === 'string'){
-                    if(obj[key]===_data){
+                if(typeof obj[key]==='string'){
+                    if(obj[key]===value){
                         $node.addClass('disabled');
                     }
                 }

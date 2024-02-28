@@ -1,0 +1,29 @@
+
+/* hands-content */
+.vnjson__stage{
+    top: 20px !important;      
+    height: 505px !important;  
+    background: #333 !important;
+}
+.stage-parent{
+    background: rgba(255, 255, 255, 0.1) !important;  
+}
+
+.stage-vol{
+    color: darkcyan !important;  
+    background: #000 !important;
+}
+.stage-vol:hover{
+    color: #34d1a2 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.stage-child{
+    color: darkcyan !important;
+    background: #000 !important;
+}
+.stage-child:hover{
+    color: #34d1a2 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+/* hands-content */

@@ -1,11 +1,11 @@
 - $root.$init: Том 1
-  disabled: true
   children:
       - scene1.ch1: Глава 1
-        disabled: true
       - scene1.ch2: Глава 2
 
 - $root.$init: Том 2
+  disabled:
+    gender: М
   children:
       - $init: Глава 1
       - scene2.ch2: Глава 2
@@ -13,9 +13,13 @@
 - $root.$init: Том 3
   children:
       - scene3.ch1: Глава 1
+        disabled: 
+          age: [0,10]      
       - scene3.ch2: Глава 2
-      
+        disabled: true      
+
 - $root.$init: Том 4
+  disabled: true
   children:
       - scene3.ch1: Глава 1
       - scene3.ch2: Глава 2
