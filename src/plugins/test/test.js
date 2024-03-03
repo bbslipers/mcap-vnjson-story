@@ -52,8 +52,11 @@ class Test {
         $(".vnjson__test-name").html(this.args.name);
         const $imageContaner = $(".vnjson__test-quetion-img");
 
-        if (this._quetionItem?.reply) {  
-            $(".dialog-box__reply").html(this._quetionItem.reply);
+        if (!vnjs.state.character) {
+            vnjs.state.character = vnjs.tree.$root.characters[0];
+        }
+        if (this._quetionItem?.reply) { 
+            vnjs.emit("vnjson.character", vnjs.state.character, this._quetionItem.reply);
         }
 
         if (this._quetionItem?.audio) {
@@ -169,9 +172,15 @@ class Test {
     clickItem ($node){
         const index = $($node).data("index");
         const point = $($node).data("point");
+
         if(point){
             vnjs.state.data.summTest = vnjs.state.data.summTest + point;
         }
+
+        if (!vnjs.state.character) {
+            vnjs.state.character = vnjs.tree.$root.characters[0];
+        }
+
         if (this.click) {
             if (index === this._quetionItem.correct - 1) {
                 if (this.args["self-control"]) {
@@ -180,7 +189,7 @@ class Test {
                 ++vnjs.state.data.trueAnswer;
                 this.answers.push({ answer: true, quetion: this._quetionItem });
                 if (this._quetionItem?.right) {  
-                    $(".dialog-box__reply").html(this._quetionItem.right);
+                    vnjs.emit("vnjson.character", vnjs.state.character, this._quetionItem.right);
                     if (this._quetionItem?.pause) {
                         this.pause = this._quetionItem.pause;
                     }
@@ -200,7 +209,7 @@ class Test {
                 ++vnjs.state.data.falseAnswer;
                 this.answers.push({ answer: false, quetion: this._quetionItem });    
                 if (this._quetionItem?.wrong) {
-                    $(".dialog-box__reply").html(this._quetionItem.wrong);
+                    vnjs.emit("vnjson.character", vnjs.state.character, this._quetionItem.wrong);
                     if (this._quetionItem?.pause) {
                         this.pause = this._quetionItem.pause;
                     }                       

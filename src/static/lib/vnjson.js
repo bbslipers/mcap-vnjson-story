@@ -22,42 +22,39 @@
       events[name].push(handler);
       return this;
     }
-  
-    function once(name, handler) {
-      handler._once = true;
-      on(name, handler);
-      return this;
-    }
-  
+
     function off(name) {
       var handler = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       handler ? events[name].splice(events[name].indexOf(handler), 1) : delete events[name];
       return this;
     }
-  
+
+    function once(name, handler) {
+      handler._once = true;
+      on(name, handler);
+      return this;
+    }
+    
     function emit(name) {
       var _this = this;
   
       for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
-      } // cache the events, to avoid consequences of mutation
-  
-  
-      var cache = events[name] && events[name].slice(); // only fire handlers if they exist
-  
+      }
+    
+      var cache = events[name] && events[name].slice();
       cache && cache.forEach(function (handler) {
-        // remove handlers added with 'once'
-        handler._once && off(name, handler); // set 'this' context, pass args to handlers
-  
+        handler._once && off(name, handler);  
         handler.apply(_this, args);
       });
+
       return this;
     }
   
     return _extends({}, extended, {
       on: on,
+      off: off,      
       once: once,
-      off: off,
       emit: emit,
       events: events
     });
@@ -86,9 +83,9 @@
       assets: []
     };
     on = emitter.on;
+    off = emitter.off;    
     once = emitter.once;
     emit = emitter.emit;
-    off = emitter.off;
   
     constructor() {}
   
@@ -287,14 +284,13 @@
       });
     } else {
       const path = pathname.split(".");
-      this.state.index = path[2] || 0; //label
+      this.state.index = path[2] || 0;
   
       if (!/\./i.test(pathname)) {
         this.state.labelName = path[0];
         this.emit("jump.init", false);
         this.exec();
-      } //scene.label
-  
+      }
   
       if (/\./i.test(pathname)) {
         this.state.sceneName = path[0];
@@ -312,21 +308,18 @@
     if (!this.state.character) {
       this.state.character = this.tree.$root.characters[0];
     }
-  
     this.emit("vnjson.character", this.state.character, reply, true);
   }
   
   /**
    * timeout:
    *   timer: 1000
-   *   exec: # deprecated
-   *      $: Time is over
    *   onEnd:
    *      $: Time is over
    */
   function timeout (args) {
     setTimeout(() => {
-      this.exec(args.onEnd || args.exec);
+      this.exec(args.onEnd);
     }, args.timer);
   }
   
@@ -338,16 +331,11 @@
   }
   
   const vnjs = new Vnjson();
-  window.vnjs = vnjs
-  /**
-   * init plugins
-   */
+  window.vnjs = vnjs;
   
   vnjs.on("log", log);
+  vnjs.on("+", append);  
   vnjs.on("jump", jump);
-  vnjs.on("+", append);
-  vnjs.on("timeout", timeout);
-  vnjs.on("next", next);
-  
-  
+  vnjs.on("next", next); 
+  vnjs.on("timeout", timeout); 
 })()

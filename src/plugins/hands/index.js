@@ -65,10 +65,10 @@ function characterHandler(character) {
     }
     // если аватар есть и руки отображены
     if (character.avatar && show) {
-        replyWrapper.css("width", "76%");
+        replyWrapper.css("width", "75%");
     }
     // Если аватара нет, но показывает руки
     if (!character.avatar && show) {
-        replyWrapper.css("width", "90%");
+        replyWrapper.css("width", "89%");
     }
 }

@@ -20,22 +20,17 @@ vnjs.on('get-rnd', (args) => {
 });
 
 vnjs.on('get-data', (args) => {
-    if(vnjs.package['url-db']){
-        const id = vnjs.plugins.data.stringToData(args.id);
-        const namespace = vnjs.plugins.data.stringToData(args.namespace);
+    const id = vnjs.plugins.data.stringToData(args.id);
+    const namespace = vnjs.plugins.data.stringToData(args.namespace);
 
-        const query = `SELECT * FROM ${namespace} WHERE id = '${id}'`;
-        const URL = formatURL(vnjs.package['url-db'], query);
-        fetch(URL)
-            .then(r=>r.json())
-            .then( (data) => {
-                vnjs.state.data[args.value] = data.items[0].value;
-            })
-            .catch(err => console.error(err));
-    }
-    else{
-        vnjs.emit('vnjson:error', 'В файле $root/package.yaml должно быть свойство url_db');
-    }
+    const query = `SELECT * FROM ${namespace} WHERE id = '${id}'`;
+    const URL = formatURL(vnjs.package['ri-api'], query);
+    fetch(URL)
+        .then(r=>r.json())
+        .then( (data) => {
+            vnjs.state.data[args.value] = data.items[0].value;
+        })
+        .catch(err => console.error(err));
 })
 
 

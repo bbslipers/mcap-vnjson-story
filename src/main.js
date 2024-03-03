@@ -37,35 +37,27 @@ import slide from "./plugins/slide/index.js";
 import html from "./plugins/html/index.js";
 import term from "./plugins/term/index.js";
 import test from "./plugins/test/index.js";
-//import discordLog from "./plugins/discord-log/index.js";
 
-// minecraft
-import mcPlayer from "./plugins/mc-player/index.js";
-import mcExec from "./plugins/mc-exec/index.js";
-import mcGet from "./plugins/mc-get/index.js";
-import mcCheck from "./plugins/mc-check/index.js";
-//
 import video from "./plugins/video/index.js";
 import area from "./plugins/area/index.js";
 import blocks from "./plugins/blocks/index.js";
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 import executeVnjson from "./plugins/execute/index.js";
-//import spriteAnimate from './plugins/sprite-animate/index.js';
 import getLocalTime from './plugins/get-localtime/index.js';
 import intervalVnjson from './plugins/interval/index.js';
 import getData from './plugins/get-data/index.js';
 import HUD from "./plugins/hud/index.js";
 
+
 import zimjs from './plugins/zimjs/index.js';
+import discord from "./plugins/discord/index.js";
 import showFrame from './plugins/show-frame/index.js';
 import dragItems from './plugins/drag-items/index.js';
 import selectWord from './plugins/select-word/index.js';
 
-//import typewrite from './plugins/typewrite/index.js';
-//import paintBoard from './plugins/paint-board/index.js';
-//import chessBoard from './plugins/chess-board/index.js';
-//import brythonIDE from './plugins/brython-ide/index.js';
-
+import mcGet from "./plugins/mc-get/index.js";
+import mcExec from "./plugins/mc-exec/index.js";
+import mcCheck from "./plugins/mc-check/index.js";
 
 
 /**
@@ -75,8 +67,6 @@ import selectWord from './plugins/select-word/index.js';
 vnjs.use(assetsLoader);
 vnjs.use(screen);
 vnjs.use(fontFamily);
-
-
 
 /*components*/
 vnjs.use(scene);
@@ -96,40 +86,31 @@ vnjs.use(slide);
 vnjs.use(html);
 vnjs.use(term);
 vnjs.use(test);
-//vnjs.use(discordLog);
 
 vnjs.use(hands);
 vnjs.use(voice);
 vnjs.use(content);
 
-// minecraft
-vnjs.use(mcPlayer);
-vnjs.use(mcCheck);
-vnjs.use(mcExec);
-vnjs.use(mcGet);
-//
+
 vnjs.use(video);
 vnjs.use(area);
 vnjs.use(blocks);
 vnjs.use(dialogBoxInfo);
 vnjs.use(executeVnjson);
-//vnjs.use(spriteAnimate);
 vnjs.use(getLocalTime);
 vnjs.use(intervalVnjson);
 vnjs.use(getData);
 vnjs.use(HUD);
 
 vnjs.use(zimjs);
+vnjs.use(discord);
 vnjs.use(showFrame);
 vnjs.use(dragItems);
 vnjs.use(selectWord);
 
-//vnjs.use(typewrite);
-//vnjs.use(paintBoard);
-//vnjs.use(chessBoard);
-//vnjs.use(brythonIDE);
-
-
+vnjs.use(mcGet);
+vnjs.use(mcExec);
+vnjs.use(mcCheck);
 
 // Load scenes
 //function showError (err){
@@ -157,7 +138,6 @@ fetch(`scenes/vn.json?v=${new Date().getTime()}`)
 //      }
   })
   .catch((err) => {
-//    showError(err);
     console.error("Invalid script", err.message);
   });
 
@@ -168,10 +148,25 @@ vnjs.on("postload", function () {
     debug: vnjs.package.debug,    
   };
 
-  // ?jump=scene
-  // or
-  // ?jump=scene.$init
-  // ?jump=scene.label
+  try {
+    window.mcefQuery({
+      request: "info",
+      persistent: true,
+      onSuccess: response=>{
+        vnjs.state.data.player = JSON.parse(response);
+        vnjs.emit('player-load', vnjs.state.data.player.name);
+      }
+    })
+  } catch (err) {
+    vnjs.state.data.player = {
+      name: vnjs.package.player.name,
+      uuid: vnjs.package.player.uuid
+    }
+    vnjs.emit('player-load', vnjs.state.data.player.name);
+  }
+
+  // Обработка перехода по URL
+  // http://localhost:9000?jump=$root.$init
   const label = new URL(location.href).searchParams.get("jump");
   if (label) {
     const [sceneName, labelName] = label.split(".");
