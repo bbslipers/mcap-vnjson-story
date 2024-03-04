@@ -7,9 +7,7 @@ export default function () {
                         <div class="dialog-box__info-text"></div>
                   </div>`);
     vnjs.store.screen.append($tpl);
-    /**
-     * INFO
-     */
+
     const $info = $(".dialog-box__info");
     const $avatar = $(".dialog-box__avatar");
     const info = new Info($info, $avatar);
@@ -21,9 +19,10 @@ export default function () {
         if (typeof param === "object") {
             if (param.info) {
                 info.print(String(param.info));
-                // addBorder
                 if (param.borderColor) {
                     info.addBorder(param.borderColor);
+                } else {
+                    info.addBorder('gray');    
                 }
                 const $icon = $tpl.find(".dialog-box__info-icon");
                 if (param.icon) {

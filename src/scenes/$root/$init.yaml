@@ -9,14 +9,11 @@
     </div>"
   hands-voice: kolokol
 
-#- discord: true
-#- discord: Получите распишитесь
-- discord:
-    title: "Заголовок"
-    content: "Текст сообщения (максимум 2000 символов)"
-    description: "Текст сообщения (можно использовать Markdown)"
-    fields:
-      - name: "Место"
-        value: "Пещера дракона"
-      - name: "Действие"
-        value: "Пробуждение Смауга"   
+- author:
+    icon: author
+    info: $"Скрытый текст"
+    reply: $"Текст реплики"
+    avatar: author
+    nameColor: '#D9D9D9'
+    replyColor: '#D9D9D9'
+    borderColor: '#D9D9D9'

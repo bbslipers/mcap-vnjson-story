@@ -1,0 +1,134 @@
+{
+	"- help: Список команд": {
+		"prefix": "help",
+		"body": [
+			"# - help: Список команд",			
+			"# - next: Продолжить дальше",
+			"# - jump: Перейти на сцену к действию",				
+			"# - dbox: Управление областью диалога",								
+	 	],
+	 	"description": "Список команд"
+	},
+
+	"- next: Продолжить дальше": {
+		"prefix": "next",
+		"body": [
+			"- next: true"
+	 	],
+	 	"description": "Продолжить дальше"
+	},
+
+	"- jump: Перейти на сцену к действию": {
+		"prefix": "jump",
+		"body": [
+			"- jump: $$root.$$init"
+	 	],
+	 	"description": "Перейти на сцену к действию"
+	},
+
+	"- dialog-box: Скрыть": {
+		"prefix": "dbox",
+		"body": [
+			"- dialog-box: false",
+			"  next: true"
+		],
+		"description": "Скрыть текущую область диалога"
+   },
+
+	"- dialog-box: Показать": {
+		"prefix": "dbox",
+		"body": [
+	 	    "- dialog-box: true",
+			"  next: true"
+	 	],
+	 	"description": "Показать текущую область диалога"
+	},
+
+   "- dialog-box: Очистить": {
+	"prefix": "dbox",
+	"body": [
+		"- dialog-box: clear",
+		"  next: true"
+	],
+	"description": "Очистить область диалога"
+	},
+
+   "- dialog-box: Класическая": {
+	"prefix": "dbox",
+	"body": [
+		"- dialog-box: classic",
+		"  next: true"
+	],
+	"description": "Показать классическую область диалога"
+    },
+
+	"- dialog-box: Во весь экран": {
+		"prefix": "dbox",
+		"body": [
+			"- dialog-box: fullscreen",
+			"  next: true"
+		],
+		"description": "Показать полноэкранную область диалога"
+	},
+
+	"- dialog-box: Недоступная": {
+		"prefix": "dbox",
+		"body": [
+			"- dialog-box: disabled",
+			"  next: true"
+		],
+		"description": "Сделать область диалога недоступной"
+	},
+
+	"- dialog-box: Прозрачная": {
+		"prefix": "dbox",
+		"body": [
+			"- dialog-box: transparent",
+			"  next: true"
+		],
+		"description": "Сделать область диалога прозрачной"
+	},
+	
+	"- dialog-box: Все настройки": {
+		"prefix": "dbox",
+		"body": [
+			"- execute:",
+			"    - dialog-box: true         # Показать",
+			"    - dialog-box: false        # Скрыть",
+			"    - dialog-box: clear        # Очистить",
+			"    - dialog-box: classic      # Классическая",
+			"    - dialog-box: disabled     # Недоступная",			
+			"    - dialog-box: fullscreen   # Во весь экран",
+			"    - dialog-box: transparent  # Прозрачная",
+			"  next: true                   # Продолжить"
+		],
+		"description": "Настроить область диалога"
+	},
+		
+	"- repl: Реплика персонажа": {
+		"prefix": "repl",
+		"body": [
+			"- author:",			
+			"    icon: author",			
+			"    info: \"Скрытый текст\"",			
+			"    reply: \"Текст реплики\"",			
+			"    avatar: author",
+			"    nameColor: '#D9D9D9'",
+			"    replyColor: '#D9D9D9'",
+			"    borderColor: '#D9D9D9'"			
+	 	],
+	 	"description": "Вставить реплику персонажа"
+	},
+
+	"- char: Описание персонажа": {
+		"prefix": "char",
+		"body": [
+			"- id: author",
+			"  name: author",
+			"  avatar: author",
+			"  nameColor: '#D9D9D9'",
+			"  replyColor: '#D9D9D9'"
+	 	],
+	 	"description": "Вставить описание новго персонажа"
+	},	
+}

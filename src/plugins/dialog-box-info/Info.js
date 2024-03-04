@@ -16,14 +16,10 @@ class Info {
         if (this.$text.text() === "undefined") return;
         this.$info.css("display", "flex");
         this.openModal = true;
-        this.hideBorder();
     }
     close() {
         this.$info.hide();
         this.openModal = false;
-    }
-    hideBorder() {
-        this.$avatar.css("border-color", "transparent");
     }
     toggle() {
         if (this.openModal) {

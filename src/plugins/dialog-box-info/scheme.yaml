@@ -1,12 +1,8 @@
- 
-# CHARACTER
-- $:
-    reply: test
-    #avatar: ch
-    #nameColor: '#c90076'
-    #replyColor: '#ff0497' 
-    info: test test test tset test
-    borderColor: '#ff0497' 
-    icon: alice
-
-
+- author:
+    icon: author
+    info: $"Скрытый текст"
+    reply: $"Текст реплики"
+    avatar: author
+    nameColor: '#D9D9D9'
+    replyColor: '#D9D9D9'
+    borderColor: '#D9D9D9'
