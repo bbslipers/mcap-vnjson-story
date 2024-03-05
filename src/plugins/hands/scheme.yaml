@@ -1,8 +1,7 @@
-
-
+# Руки 60х60
 - hands: true 
+- hands: false
 
 - hand-right: item1-img
 - hand-left: imte2-img
 
-- hands: false

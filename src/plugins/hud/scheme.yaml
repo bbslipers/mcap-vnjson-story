@@ -1,4 +1,4 @@
-# show
+# show 40x40
 - hud: true
 - hud: false
 
@@ -55,6 +55,7 @@
     icon: map
     exec:
       scene: ch
+
 - hud-inv:
     slot: 1
     icon: false

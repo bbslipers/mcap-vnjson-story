@@ -268,10 +268,7 @@
    */
   function jump (_pathname) {
     const pathname = String(_pathname);
-    /**
-     * Обработка прыжка по менткам _mark
-     */
-  
+
     if (/^_/i.test(pathname)) {
       const labelBody = this.getCurrentLabelBody();
       if (labelBody.length === 0) return;
@@ -322,7 +319,7 @@
       this.exec(args.onEnd);
     }, args.timer);
   }
-  
+
   /**
    * next: true
    */

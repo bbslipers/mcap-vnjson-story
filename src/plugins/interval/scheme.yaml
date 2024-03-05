@@ -1,8 +1,8 @@
-
-# add interval
+# Назначить обработчик ожидания
 - interval:
     timer: 1000
-    exec:
-      +: a
+    onEnd:
+      +: "."
 
-- interval: false # remove interval
+# Отменить обработчик ожидания
+- interval: false

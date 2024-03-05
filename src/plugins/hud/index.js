@@ -2,60 +2,15 @@ import "./style.css";
 import tpl from "./tpl.html";
 
 const $tpl = $(tpl);
+const $invTag = $tpl.find(".vnjson-hud__inv");
 const $hudLeft = $tpl.find(".vnjson-hud__left");
 const $hudRight = $tpl.find(".vnjson-hud__right");
-const $invTag = $tpl.find(".vnjson-hud__inv");
+
 let  slotData = null;
+
 export default function (){
     vnjs.store.screen.append($tpl);
 }
-
-vnjs.on("hud", (args) => {
-    if (args) {
-        $tpl.show();
-    } else {
-        $tpl.hide();
-    }
-});
-
-vnjs.on("hud-left", (args) => {
-    let width = null
-    if(vnjs.state.data[args]){
-        width = vnjs.state.data[args]
-    }
-    else{
-        width = args
-    }
-    $hudLeft.animate({ width }, 300);
-});
-
-vnjs.on("hud-right", (args) => {
-    let width = null
-    if(vnjs.state.data[args]){
-        width = vnjs.state.data[args]
-    }
-    else{
-        width = args
-    }
-    $hudRight.animate({ width }, 300);
-});
-vnjs.on("hud-inv", (args) => hudInvHandler(args));
-//const _this = this
-$invTag.on("click", ".vnjson-hud__slot", function () {
-    clickSlotHandler( $(this) )
-});
-/**
- * Если режим диалогового окна полноэкранный. То hud прижимаем к низу
- */
-vnjs.on("dialog-box.mode", (mode) => {
-    if (mode === "mode-classic") {
-        $tpl.css({ bottom: "210px" });
-    }
-    if (mode === "mode-fullscreen") {
-        $tpl.css({ bottom: "10px" });
-    }
-});
-
 
 function hudInvHandler(args) {
     const $slot = $tpl.find(`.vnjson-hud__item--${args.slot}`);
@@ -76,7 +31,6 @@ function hudInvHandler(args) {
 }
 
 function clickSlotHandler(target) {
-
     if (!slotData) return;
     if (!slotData.exec) return;
 
@@ -84,3 +38,49 @@ function clickSlotHandler(target) {
         vnjs.exec(slotData.exec);
     }
 }
+
+
+vnjs.on("hud", (args) => {
+    if (args) {
+        $tpl.show();
+    } else {
+        $tpl.hide();
+    }
+})
+
+vnjs.on("hud-left", (args) => {
+    let width = null
+    if(vnjs.state.data[args]){
+        width = vnjs.state.data[args]
+    }
+    else{
+        width = args
+    }
+    $hudLeft.animate({ width }, 300);
+})
+
+vnjs.on("hud-right", (args) => {
+    let width = null
+    if(vnjs.state.data[args]){
+        width = vnjs.state.data[args]
+    }
+    else{
+        width = args
+    }
+    $hudRight.animate({ width }, 300);
+})
+
+vnjs.on("dialog-box.mode", (mode) => {
+    if (mode === "mode-classic") {
+        $tpl.css({ bottom: "210px" });
+    }
+    if (mode === "mode-fullscreen") {
+        $tpl.css({ bottom: "10px" });
+    }
+})
+
+vnjs.on("hud-inv", (args) => hudInvHandler(args))
+
+$invTag.on("click", ".vnjson-hud__slot", function () {
+    clickSlotHandler( $(this) )
+})

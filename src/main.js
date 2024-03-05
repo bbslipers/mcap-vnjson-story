@@ -1,39 +1,41 @@
 import './theme.css'
+// Встроенные:
+// log, jump, next, timeout
 
-// jump
-// next
-// timeout
+import assetsLoader from "./plugins/$assets-loader/index.js";
+import fontFamilyLoader from "./plugins/$font-family-loader/index.js";
 
-/* debug */
-//import debug from "./plugins/debug/index.js";
-//import debugUtils from "./plugins/debug-utils/index.js";
-
-/* basic */
-import assetsLoader from "./plugins/assets-loader/index.js";
-import fontFamily from "./plugins/font-family/index.js";
 import screen from "./plugins/screen/index.js";
-
 import dialogBox from "./plugins/dialog-box/index.js";
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 
+import clear from "./plugins/clear/index.js";
+import scene from "./plugins/scene/index.js";
+
+import hud from "./plugins/hud/index.js";
+import hands from "./plugins/hands/index.js";
+import handsVoice from "./plugins/hands-voice/index.js";
+import handsContent from "./plugins/hands-content/index.js";
+
+import switchVnjson from "./plugins/switch/index.js";
+import executeVnjson from "./plugins/execute/index.js";
+import intervalVnjson from './plugins/interval/index.js';
+
+
+
 
 import data from "./plugins/data/index.js";
+import input from "./plugins/input/index.js";
+
 
 import audio from "./plugins/audio/index.js";
-
-import hands from "./plugins/hands/index.js";
-import voice from "./plugins/hands-voice/index.js";
-import content from "./plugins/hands-content/index.js";
-
-
 import menu from "./plugins/menu/index.js";
 import mainMenu from "./plugins/main-menu/index.js";
 import show from "./plugins/show/index.js";
 import showAuto from "./plugins/show-auto/index.js";
-import scene from "./plugins/scene/index.js";
 import table from "./plugins/table/index.js";
-import clear from "./plugins/clear/index.js";
-import input from "./plugins/input/index.js";
+
+
 import wiki from "./plugins/wiki/index.js";
 import slide from "./plugins/slide/index.js";
 import html from "./plugins/html/index.js";
@@ -48,11 +50,8 @@ import blocks from "./plugins/blocks/index.js";
 import getLocalTime from './plugins/get-localtime/index.js';
 
 import getData from './plugins/get-data/index.js';
-import HUD from "./plugins/hud/index.js";
 
-import switchVnjson from "./plugins/switch/index.js";
-import executeVnjson from "./plugins/execute/index.js";
-import intervalVnjson from './plugins/interval/index.js';
+
 
 import zimjs from './plugins/zimjs/index.js';
 import discord from "./plugins/discord/index.js";
@@ -66,26 +65,42 @@ import mcCheck from "./plugins/mc-check/index.js";
 
 
 vnjs.use(assetsLoader);
-vnjs.use(fontFamily);
-vnjs.use(screen);
+vnjs.use(fontFamilyLoader);
 
+vnjs.use(screen);
 vnjs.use(dialogBox);
 vnjs.use(dialogBoxInfo);
+
+vnjs.use(data);
+vnjs.use(clear);
+vnjs.use(scene);
+
+vnjs.use(hud);
+vnjs.use(hands);
+vnjs.use(handsVoice);
+vnjs.use(handsContent);
+
+vnjs.use(switchVnjson);
+vnjs.use(executeVnjson);
+vnjs.use(intervalVnjson);
+
+
+
 
 
 
 
 /*components*/
-vnjs.use(scene);
+
 vnjs.use(show);
 vnjs.use(showAuto);
 vnjs.use(audio);
 vnjs.use(menu);
 vnjs.use(mainMenu);
 vnjs.use(table);
-vnjs.use(clear);
 
-vnjs.use(data);
+
+
 
 vnjs.use(input);
 vnjs.use(wiki);
@@ -94,9 +109,7 @@ vnjs.use(html);
 vnjs.use(term);
 vnjs.use(test);
 
-vnjs.use(hands);
-vnjs.use(voice);
-vnjs.use(content);
+
 
 
 vnjs.use(video);
@@ -106,11 +119,9 @@ vnjs.use(blocks);
 
 vnjs.use(getLocalTime);
 vnjs.use(getData);
-vnjs.use(HUD);
 
-vnjs.use(switchVnjson);
-vnjs.use(executeVnjson);
-vnjs.use(intervalVnjson);
+
+
 
 vnjs.use(zimjs);
 vnjs.use(discord);

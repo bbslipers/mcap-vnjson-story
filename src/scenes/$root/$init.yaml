@@ -1,6 +1,35 @@
 - dialog-box: classic
-  hands: true
   next: true
+
+- author:
+    "<div style='text-align: justify'>
+    Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.
+    Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.
+    </div>"
+
+- author:
+    icon: message
+    info: "Скрытый текст"
+    reply: "Текст реплики"
+    avatar: author
+    nameColor: '#D9D9D9'
+    replyColor: '#D9D9D9'
+    borderColor: '#D9D9D9'
+
+
+
+- hands: true
+  next: true
+
+- hud: true
+  hud-left: 100%
+  hud-right: 100%
+
+- hud-left: 10%
+- hud-left: 70%
+- hud-left: 40%
+
+- hud: false
 
 - author:
     "<div style='text-align: justify'>
@@ -10,10 +39,28 @@
   hands-voice: kolokol
 
 - author:
-    icon: author
-    info: $"Скрытый текст"
-    reply: $"Текст реплики"
+    icon: message
+    info: "Скрытый текст"
+    reply: "Текст реплики"
     avatar: author
     nameColor: '#D9D9D9'
     replyColor: '#D9D9D9'
     borderColor: '#D9D9D9'
+
+- author:
+    info: "Скрытый текст 1"
+
+- interval:
+    timer: 1000
+    onEnd:
+      +: "."
+
+- interval: false
+  next: true
+
+- timeout:
+    timer: 2000
+    onEnd:
+      $: Время вышло
+
+- dialog-box: disabled
