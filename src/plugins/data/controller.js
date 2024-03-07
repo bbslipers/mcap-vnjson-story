@@ -1,6 +1,6 @@
 class Controller {
     token = null;
-    #value = null;
+    
     load(token) {
         this.token = token;
         const data = localStorage.getItem(this.token);
@@ -10,12 +10,11 @@ class Controller {
             vnjs.state.data = {};
         }
     }
+    
     save(data) {
         localStorage.setItem(this.token, JSON.stringify(data));
     }
-    /**
-     * localStorage.remove()
-     */
+
     clear(args) {
         if (args === true) {
             localStorage.removeItem(this.token);
@@ -30,88 +29,154 @@ class Controller {
             this.save(vnjs.state.data);
         }
     }
-    set(data) {
-        this.#value = null;
-        for (let key in data) {
-            let value = String(data[key]);
-            this.#value = value;
-            const _valueVar = value.match(/{{.+?}}/g);
 
-            if (value.includes("+=")) {
-                const val = value.replace("+=", "");
-                this.valueIncrement(key, val);
-            } else if (value.includes("-=")) {
-                const val = value.replace("-=", "");
-                this.valueDecrement(key, val);
-            } else {
-                if (isNaN(value)) {
-                    vnjs.state.data[key] = value;
-                } else {
-                    vnjs.state.data[key] = Number(value);
+    set(data) {
+        for (let key in data) {
+            let valueStr = null;
+            let valueNum = null;
+            let valueVar = null;
+
+            valueNum = Number(data[key]);
+            valueStr = String(data[key]);
+            if (Number.isNaN(valueNum)) {           
+                valueVar = valueStr.match(/{{.+?}}/g);
+                if (valueVar) {
+                    valueVar = valueVar[0];
+                    valueVar = valueVar.replace("{{", "").replace("}}", "").replace(" ", "");
+                    valueVar = vnjs.state.data[valueVar];
+                    valueNum = Number(valueVar);
+                    valueStr = String(valueVar);
+                    if (Number.isNaN(valueNum)) {
+                        vnjs.state.data[key] = valueStr;
+                    }else{
+                        vnjs.state.data[key] = valueNum;
+                    }
+                }else{
+                    vnjs.state.data[key] = valueStr;    
+                }
+            }else{
+                vnjs.state.data[key] = valueNum;    
+            }
+            this.save(vnjs.state.data);  
+        }
+    }
+
+    plus(data) {
+        for (let key in data) {
+            let valueStr = null;
+            let valueNum = null;
+            let valueVar = null;
+            let valueAdd = null;
+
+            valueNum = Number(data[key]);
+            if (Number.isNaN(valueNum)) {
+                valueStr = String(data[key]);
+                valueVar = valueStr.match(/{{.+?}}/g);
+                if (valueVar) {
+                    valueVar = valueVar[0];
+                    valueVar = valueVar.replace("{{", "").replace("}}", "").replace(" ", "");
+                    valueVar = vnjs.state.data[valueVar];
+                    valueNum = Number(valueVar);
+                    valueStr = String(valueVar);
+                    if (Number.isNaN(valueNum)) {
+                        valueAdd = valueStr;
+                    }else{
+                        valueAdd = valueNum;
+                    }
+                }else{
+                    valueAdd = valueStr;    
+                }
+            }else{
+                valueAdd = valueNum;    
+            }
+
+            valueStr = String(vnjs.state.data[key]);
+            valueNum = Number(vnjs.state.data[key]);         
+            if (Number.isNaN(valueNum)) {
+                if (valueStr==='undefined'){
+                    vnjs.state.data[key] = valueAdd;
+                }else{
+                    if (typeof(valueAdd)==='string'){
+                        vnjs.state.data[key] = valueStr + ' ' + valueAdd;
+                    }   
+                }
+            }else{
+                if (valueStr==='undefined'){
+                    vnjs.state.data[key] = valueAdd;
+                }else{
+                    if (typeof(valueAdd)==='number'){
+                        vnjs.state.data[key] = valueNum + valueAdd;
+                    } 
                 }
             }
-            /**
-             * LINK
-             * varname: {{age}}
-             * varname: Hello {{name}}
-             */
+            this.save(vnjs.state.data);  
+        }
+    }
 
-            if (_valueVar) {
-                _valueVar.forEach((_varData) => {
-                    const _key2 = _varData.replace("{{", "").replace("}}", "");
-                    let _value2 = vnjs.state.data[_key2];
-                    if (!isNaN(_value2)) {
-                        _value2 = Number(_value2);
+    minus(data) {
+        for (let key in data) {
+            let valueStr = null;
+            let valueNum = null;
+            let valueVar = null;
+            let valueAdd = null;
+
+            valueNum = Number(data[key]);
+            if (Number.isNaN(valueNum)) {
+                valueStr = String(data[key]);
+                valueVar = valueStr.match(/{{.+?}}/g);
+                if (valueVar) {
+                    valueVar = valueVar[0];
+                    valueVar = valueVar.replace("{{", "").replace("}}", "").replace(" ", "");
+                    valueVar = vnjs.state.data[valueVar];
+                    valueNum = Number(valueVar);
+                    valueStr = String(valueVar);
+                    if (Number.isNaN(valueNum)) {
+                        valueAdd = valueStr;
+                    }else{
+                        valueAdd = valueNum;
                     }
-                    this.#value = this.#value.replaceAll(_varData, _value2);
-                    vnjs.state.data[key] = this.#value;
-                });
+                }else{
+                    valueAdd = valueStr;    
+                }
+            }else{
+                valueAdd = valueNum;    
             }
-        }
-        this.save(vnjs.state.data);
-    }
-    valueIncrement(key, val) {
-        let _val = Number(val);
-        if (isNaN(_val)) {
-            _val = val;
-        }
-        if (vnjs.state.data[key]) {
-            vnjs.state.data[key] = vnjs.state.data[key] + _val;
-        } else {
-            vnjs.state.data[key] = _val;
-        }
-    }
-    valueDecrement(key, val) {
-        let _val = Number(val);
-        if (isNaN(_val)) {
-            _val = val;
-            if (vnjs.state.data[key]) {
-                vnjs.state.data[key] = vnjs.state.data[key].replace(_val, "");
-            } else {
-                vnjs.state.data[key] = "";
+
+            valueStr = String(vnjs.state.data[key]);
+            valueNum = Number(vnjs.state.data[key]);         
+            if (Number.isNaN(valueNum)) {
+                if (valueStr==='undefined'){
+                    vnjs.state.data[key] = "";
+                }else{
+                    if (typeof(valueAdd)==='string'){                                           
+                        vnjs.state.data[key] = valueStr.replace(valueAdd,"");                     
+                    }   
+                }
+            }else{
+                if (valueStr==='undefined'){
+                    vnjs.state.data[key] = (-1) * valueAdd;
+                }else{
+                    if (typeof(valueAdd)==='number'){
+                        vnjs.state.data[key] = valueNum - valueAdd;
+                    } 
+                }
             }
-            return;
-        }
-        if (vnjs.state.data[key]) {
-            vnjs.state.data[key] = vnjs.state.data[key] - _val;
-        } else {
-            vnjs.state.data[key] = -_val;
+            this.save(vnjs.state.data);  
         }
     }
+
     stringToData(reply) {
         let _newReply = String(reply);
         const variables = String(reply).match(/{{.+?}}/g);
         if (!variables) return _newReply;
         variables.forEach((varItem) => {
             const dataKey = varItem.replaceAll("{{", "").replaceAll("}}", "").trim();
-
             if(vnjs.state.data[dataKey]===undefined||vnjs.state.data[dataKey]===false||vnjs.state.data[dataKey]===null){
                 _newReply = _newReply.replaceAll(varItem, "");
             }
             else{
                 _newReply = _newReply.replaceAll(varItem, vnjs.state.data[dataKey]);
             }
-
         });
         return _newReply;
     }

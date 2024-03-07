@@ -21,36 +21,29 @@ import switchVnjson from "./plugins/switch/index.js";
 import executeVnjson from "./plugins/execute/index.js";
 import intervalVnjson from './plugins/interval/index.js';
 
-
-
-
 import data from "./plugins/data/index.js";
-import input from "./plugins/input/index.js";
+import dataGet from './plugins/data-get/index.js';
+import dataInput from "./plugins/data-input/index.js";
 
+// ============================================================================
 
-import audio from "./plugins/audio/index.js";
-import menu from "./plugins/menu/index.js";
-import mainMenu from "./plugins/main-menu/index.js";
 import show from "./plugins/show/index.js";
 import showAuto from "./plugins/show-auto/index.js";
+
+import menu from "./plugins/menu/index.js";
+import mainMenu from "./plugins/main-menu/index.js";
+
+import audio from "./plugins/audio/index.js";
+import video from "./plugins/video/index.js";
+import slide from "./plugins/slide/index.js";
 import table from "./plugins/table/index.js";
 
-
-import wiki from "./plugins/wiki/index.js";
-import slide from "./plugins/slide/index.js";
+import area from "./plugins/area/index.js";
 import html from "./plugins/html/index.js";
 import term from "./plugins/term/index.js";
 import test from "./plugins/test/index.js";
 
-import video from "./plugins/video/index.js";
-import area from "./plugins/area/index.js";
 import blocks from "./plugins/blocks/index.js";
-
-
-import getLocalTime from './plugins/get-localtime/index.js';
-
-import getData from './plugins/get-data/index.js';
-
 
 
 import zimjs from './plugins/zimjs/index.js';
@@ -63,7 +56,6 @@ import mcGet from "./plugins/mc-get/index.js";
 import mcExec from "./plugins/mc-exec/index.js";
 import mcCheck from "./plugins/mc-check/index.js";
 
-
 vnjs.use(assetsLoader);
 vnjs.use(fontFamilyLoader);
 
@@ -71,7 +63,6 @@ vnjs.use(screen);
 vnjs.use(dialogBox);
 vnjs.use(dialogBoxInfo);
 
-vnjs.use(data);
 vnjs.use(clear);
 vnjs.use(scene);
 
@@ -84,13 +75,11 @@ vnjs.use(switchVnjson);
 vnjs.use(executeVnjson);
 vnjs.use(intervalVnjson);
 
+vnjs.use(data);
+vnjs.use(dataGet);
+vnjs.use(dataInput);
 
-
-
-
-
-
-/*components*/
+// ============================================================================
 
 vnjs.use(show);
 vnjs.use(showAuto);
@@ -101,9 +90,6 @@ vnjs.use(table);
 
 
 
-
-vnjs.use(input);
-vnjs.use(wiki);
 vnjs.use(slide);
 vnjs.use(html);
 vnjs.use(term);
@@ -117,8 +103,7 @@ vnjs.use(area);
 vnjs.use(blocks);
 
 
-vnjs.use(getLocalTime);
-vnjs.use(getData);
+
 
 
 

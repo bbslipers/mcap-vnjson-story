@@ -1,6 +1,25 @@
 - dialog-box: classic
   next: true
 
+# Получение случайного числа
+- data-random:
+    random: random
+    min: 1
+    max: 100
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Случайное число: {{random}}"
+
+# Получение случайного значения из списка
+- data-random:
+    random: random
+    list: ["Один","Два","Три"]
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Случайное значение: {{random}}"
+
 - author:
     "<div style='text-align: justify'>
     Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.

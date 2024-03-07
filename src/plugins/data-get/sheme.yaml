@@ -1,0 +1,99 @@
+# Получение уникального идентификатора
+- data-uuid: uuid
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Уникальный идентификатор: {{uuid}}"
+
+# Получение строки из частей
+- data-set:
+    w1: старых
+    w2: штиблет
+  next: true
+
+- data-join:
+    join: join
+    values: 
+      - Привет
+      - от
+      - "{{w1}}"
+      - "{{w2}}"
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Результат объединения: {{join}}"
+
+# Получение суммы чисел
+- data-set:
+    n1: 10
+    n2: 20
+  next: true
+
+- data-total:
+    total: total
+    values: 
+      - 1
+      - 3
+      - 5
+      - "{{n1}}"
+      - "{{n2}}"
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Результат сложения: {{total}}"
+
+# Получение случайного числа
+- data-random:
+    random: random
+    min: 1
+    max: 100
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Случайное число: {{random}}"
+
+# Получение случайного значения из списка
+- data-random:
+    random: random
+    list: ["Один","Два","Три"]
+  timeout:
+    timer: 300
+    onEnd:
+      $: "Случайное значение: {{random}}"
+
+
+# Получение значение из базы данных
+# База данных Reindexer задается в $root/package.yaml
+# ri-api: http://vn.mcvn.ru/reindexer/api/v1/db/vnjson
+- data-get:
+    get: get
+    index: string    
+    field: id
+    value: 00000000-0000-0000-0000-000000000000
+    namespace: data
+  timeout:
+    timer: 300
+    onEnd:
+      $: "SELECT string FROM data WHERE id='00000000-0000-0000-0000-000000000000'
+        </br>
+        string = {{get}}"
+
+- data-set:
+    index: number
+    field: id
+    value: 00000000-0000-0000-0000-000000000000
+    namespace: data
+  next: true
+
+- data-get:
+    get: get
+    index: "{{index}}"    
+    field: "{{field}}"
+    value: "{{value}}"
+    namespace: "{{namespace}}"
+  timeout:
+    timer: 300
+    onEnd:
+      $: "SELECT {{index}} FROM {{namespace}} WHERE {{field}}='{{value}}'
+        </br>
+        {{index}} = {{get}}"

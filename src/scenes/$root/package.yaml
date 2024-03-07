@@ -27,10 +27,10 @@ player:
 publish:
   isbn: 000-0-00000-000-0
   name: mcap-vnjson-1.12.2 Руководство пользователя
-  host: http://vnjson.mcap.fun
+  host: http://vn.mcvn.ru/
   token: 00000000-0000-0000-0000-000000000000
 
-ri-api: http://vnjson.mcap.fun/reindexer/api/v1/db/mcap_vnjson_store
+ri-api: http://vn.mcvn.ru/reindexer/api/v1/db/vnjson
 
 discord:
   webhook: https://discord.com/api/webhooks/1212765937749729360/fNhkpzGom-N1j4nSq7FQLJCsTkznE6FMDtOI3Xpx_fodmVJOoXhAz-2TD-HtjKMcuMku
