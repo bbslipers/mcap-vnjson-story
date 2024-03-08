@@ -8,7 +8,7 @@ const $tpl = $('<div class="vnjson__area component"></div>');
 
 export default function () {
     vnjs.store.screen.append($tpl);
-    vnjs.on("areas", handler.bind(this));
+    vnjs.on("area", handler.bind(this));
     $tpl.on("click", (e) => {
         if (!e.target.className.includes("vnjson__area-item")) return;
         const regIndex = JSON.parse(e.target.dataset.index);

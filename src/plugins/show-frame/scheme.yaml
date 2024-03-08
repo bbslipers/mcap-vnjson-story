@@ -1,31 +1,40 @@
+# Выводит на экран изображение разделенное на 4 области
+# Можно управлять отображением областей.
+# Размер изображения 800х400 пикселей.
 - frame:
-    img: lock
+    name: frame
     1: false
     2: false
     3: false
     4: false
+
 - frame:
-    img: lock
+    name: frame
     1: true
     2: false
     3: false
     4: false
+
 - frame:
-    img: lock
+    name: frame
     1: true
     2: true
     3: false
     4: false
+
 - frame:
-    img: lock
+    name: frame
     1: true
     2: true
     3: true
     4: false
+
 - frame:
-    img: lock
+    name: frame
     1: true
     2: true
     3: true
     4: true
-- frame: false
+
+# Скрывает изображение
+- show-frame: false

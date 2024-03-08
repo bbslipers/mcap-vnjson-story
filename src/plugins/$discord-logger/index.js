@@ -1,5 +1,5 @@
 export default function (){
-  vnjs.on('discord', msg=>{
+  vnjs.on('discord-log', msg=>{
     const webhook = this.package['discord']['webhook']
 
     var embeds = {

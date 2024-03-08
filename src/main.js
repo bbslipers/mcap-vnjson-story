@@ -3,6 +3,7 @@ import './theme.css'
 // log, jump, next, timeout
 
 import assetsLoader from "./plugins/$assets-loader/index.js";
+import discordLogger from "./plugins/$discord-logger/index.js";
 import fontFamilyLoader from "./plugins/$font-family-loader/index.js";
 
 import screen from "./plugins/screen/index.js";
@@ -46,7 +47,7 @@ import html from "./plugins/html/index.js";
 import test from "./plugins/test/index.js";
 
 import zimjs from './plugins/zimjs/index.js';
-import discord from "./plugins/discord/index.js";
+
 import dragItems from './plugins/drag-items/index.js';
 import selectWord from './plugins/select-word/index.js';
 
@@ -55,6 +56,7 @@ import mcExec from "./plugins/mc-exec/index.js";
 import mcCheck from "./plugins/mc-check/index.js";
 
 vnjs.use(assetsLoader);
+vnjs.use(discordLogger);
 vnjs.use(fontFamilyLoader);
 
 vnjs.use(screen);
@@ -97,7 +99,6 @@ vnjs.use(test);
 vnjs.use(audio);
 
 vnjs.use(zimjs);
-vnjs.use(discord);
 vnjs.use(dragItems);
 vnjs.use(selectWord);
 

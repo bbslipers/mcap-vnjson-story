@@ -1,6 +1,6 @@
-- areas: false
+- area: false
 
-- areas:
+- area:
     - onClickAny: # Обрабатывает клик при клике на любой области
         $: onClickAny
     - onClickOut: # Обратывает клик в любом месте кроме любой области
