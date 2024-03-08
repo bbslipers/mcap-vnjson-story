@@ -1,4 +1,5 @@
 import './theme.css'
+
 // Встроенные:
 // log, jump, next, timeout
 
@@ -33,21 +34,19 @@ import showFrame from './plugins/show-frame/index.js';
 import showImage from "./plugins/show-image/index.js";
 import showSlide from "./plugins/show-slide/index.js";
 import showTable from "./plugins/show-table/index.js";
-import showVideo from "./plugins/show-video/index.js";
 import showXterm from "./plugins/show-xterm/index.js";
 
 // ============================================================================
 
+import playVideo from "./plugins/play-video/index.js";
+import playAudio from "./plugins/play-audio/index.js";
+import playZimjs from './plugins/play-zimjs/index.js';
+
+import html from "./plugins/html/index.js";
 import menu from "./plugins/menu/index.js";
 import mainMenu from "./plugins/main-menu/index.js";
 
-import audio from "./plugins/audio/index.js";
-import html from "./plugins/html/index.js";
-
 import test from "./plugins/test/index.js";
-
-import zimjs from './plugins/zimjs/index.js';
-
 import dragItems from './plugins/drag-items/index.js';
 import selectWord from './plugins/select-word/index.js';
 
@@ -86,19 +85,19 @@ vnjs.use(showFrame);
 vnjs.use(showImage);
 vnjs.use(showSlide);
 vnjs.use(showTable);
-vnjs.use(showVideo);
 vnjs.use(showXterm);
 
 // ============================================================================
 
+vnjs.use(playVideo);
+vnjs.use(playAudio);
+vnjs.use(playZimjs);
+
+vnjs.use(html);
 vnjs.use(menu);
 vnjs.use(mainMenu);
 
-vnjs.use(html);
 vnjs.use(test);
-vnjs.use(audio);
-
-vnjs.use(zimjs);
 vnjs.use(dragItems);
 vnjs.use(selectWord);
 
