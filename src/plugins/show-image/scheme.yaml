@@ -37,12 +37,12 @@
 # Вставка спрайта (фрагмента основного изображения)
 - sprite-image:
     name: ari_1 # Основное изображение
-    offset-top: 20px # Отступ сверху
-    offset-left: 120px # Отступ слева
-    sprite-top: 10px # Позиция спрайта сверху
-    sprite-left: 10px # Позиция спрайта слева
-    sprite-width: 200px # Ширина спрайта
-    sprite-height: 200px # Высота спрайта
+    offset-top: 20 # Отступ сверху в px
+    offset-left: 120 # Отступ слева в px
+    sprite-top: 10 # Позиция спрайта сверху в px
+    sprite-left: 10 # Позиция спрайта слева в px
+    sprite-width: 200 # Ширина спрайта в px
+    sprite-height: 200 # Высота спрайта в px
 
 # Скрытие спрайта
 - sprite-image: false

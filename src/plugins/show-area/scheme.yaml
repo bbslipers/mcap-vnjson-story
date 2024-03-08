@@ -1,41 +1,19 @@
-#show: true - позволяет увидеть границы региона
-# Если внтури параметра exec содержаться плагины jump или next,
-# то плагин area: false автоматически скрывается
-# В иных случаях его нужно принудительно скрыть, если пользователь 
-# продолжит прохождение скрипта
-- area: false
+- areas: false
 
-- area:
-#    - onClick: # обрабатывает клик при клике на любой элемент.
-#        $: test
-#    - onClickOut: # обратывает клик по области не зарезервированной area
-#        $: OUT
-    - left: 10
-      top: 250
-      width: 100
-      height: 100
-      show: true # Показывает рамку цветом поумолчанию. '#e11c90' - можно передать цвет
-      exec: 
-        $: Привет мир
-    - left: 260
-      top: 60
-      width: 100
-      height: 100
-      #show: true
-      exec: 
-        $: Тест
-    - left: 580
-      top: 105
-      width: 100
-      height: 100
-      show: '#e97616'
-      exec:
-        dialog-box: false
-    - left: 780
-      top: 400
-      width: 100
-      height: 100
-      #show: true
-      exec:
-        dialog-box: true
-        area: false
+- areas:
+    - onClickAny: # Обрабатывает клик при клике на любой области
+        $: onClickAny
+    - onClickOut: # Обратывает клик в любом месте кроме любой области
+        $: onClickOut
+    - top: 250 # Отступ сверху в px
+      left: 10 # Отступ слева в px
+      width: 100 # Ширина области слева в px
+      height: 100 # Высота области слева в px
+      border: true # Показывать рамку вокруг области true/false/color
+      onClick: # Обрабатывает клик по области
+        $: Area1
+    - top: 10
+      left: 10      
+      width: 50
+      height: 50
+      border: '#e97616'

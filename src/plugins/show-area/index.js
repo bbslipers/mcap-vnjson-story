@@ -1,16 +1,18 @@
 import "./style.css";
 
-const $tpl = $('<div class="vnjson__area component"></div>');
-let _regions = null;
+let areas = null;
 let onClickData = null;
 let onClickOutData = null;
+
+const $tpl = $('<div class="vnjson__area component"></div>');
+
 export default function () {
     vnjs.store.screen.append($tpl);
-    vnjs.on("area", handler.bind(this));
+    vnjs.on("areas", handler.bind(this));
     $tpl.on("click", (e) => {
         if (!e.target.className.includes("vnjson__area-item")) return;
         const regIndex = JSON.parse(e.target.dataset.index);
-        this.exec(_regions[regIndex].exec);
+        this.exec(areas[regIndex].onClick);
     });
 }
 
@@ -21,13 +23,13 @@ function handler(regions) {
         $tpl.hide();
         return;
     }
-    _regions = regions;
     $tpl.empty();
     $tpl.show();
+    areas = regions;
     regions.forEach((reg, index) => {
         const $regTpl = $(`<div  class="vnjson__area-item" data-index="${index}"></div>`);
-        if(reg.onClick){
-            onClickData = reg.onClick;
+        if(reg.onClickAny){
+            onClickData = reg.onClickAny;
             return;
         }
         if(reg.onClickOut){
@@ -42,19 +44,18 @@ function handler(regions) {
             height: `${reg.height}px`
         })
   
-        if (reg.show) {
-            if (reg.show === true) {
-                $regTpl.css('border', '5px solid #11f285');
-              
+        if (reg.border) {
+            if (reg.border === true) {
+                $regTpl.css('border', '3px solid grey');
             }
-            if (typeof reg.show === "string") {
-                $regTpl.css('border', `5px solid ${reg.show}`);
+            if (typeof reg.border === "string") {
+                $regTpl.css('border', `3px solid ${reg.border}`);
             }
         }
         
-       if(onClickData){
+        if(onClickData){
             $regTpl.on('click', () => vnjs.exec(onClickData));
-       }
+        }
         $tpl.append($regTpl);
     });
 }

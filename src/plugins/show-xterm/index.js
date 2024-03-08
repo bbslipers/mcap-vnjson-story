@@ -6,18 +6,17 @@ import map from "./map.js";
 document.addEventListener("DOMContentLoaded", () => {
     hljs.highlightAll();
 });
-/**/
+
 export default function () {
     const $tpl = $(tpl);
 
     vnjs.store.screen.append($tpl);
 
-    vnjs.on("term", (param) => {
+    vnjs.on("xterm", (param) => {
         if (param === true) {
             $tpl.fadeIn();
         } else if (param) {
             let data = this.getDataByName(param);
-
             if (/\./.test(param)) {
                 if (!data) {
                     console.error("Data file not found");
@@ -47,7 +46,6 @@ export default function () {
                         language: langName,
                     }).value;
                     $tpl.find("pre code").html(html);
-                    // yaml reply from Norrator
                     $tpl.find("pre code .hljs-string")
                         .toArray()
                         .map((str) => {

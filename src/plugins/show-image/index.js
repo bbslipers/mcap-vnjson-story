@@ -75,11 +75,11 @@ vnjs.on("sprite-image", (args) => {
     if(args){
         $sprite.css({
             'background-image': `url(${vnjs.getAssetByName(args.name).url})`,
-            'background-position': `-${args['offset-left']} -${args['offset-top']}`,
-            'top': args['sprite-top'],
-            'left': args['sprite-left'],
-            'width': args['sprite-width'],
-            'height': args['sprite-height'],            
+            'background-position': `-${args['offset-left']}px -${args['offset-top']}px`,
+            'top': `${args['sprite-top']}px`,
+            'left': `${args['sprite-left']}px`,
+            'width': `${args['sprite-width']}px`,
+            'height': `${args['sprite-height']}px`,            
         })
         $sprite.show();
     }
