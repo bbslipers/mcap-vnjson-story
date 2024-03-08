@@ -17,38 +17,36 @@ import hands from "./plugins/hands/index.js";
 import handsVoice from "./plugins/hands-voice/index.js";
 import handsContent from "./plugins/hands-content/index.js";
 
-import switchVnjson from "./plugins/switch/index.js";
-import executeVnjson from "./plugins/execute/index.js";
-import intervalVnjson from './plugins/interval/index.js';
+import vnjsonSwitch from "./plugins/vnjson-switch/index.js";
+import vnjsonExecute from "./plugins/vnjson-execute/index.js";
+import vnjsonInterval from './plugins/vnjson-interval/index.js';
 
 import data from "./plugins/data/index.js";
 import dataGet from './plugins/data-get/index.js';
 import dataInput from "./plugins/data-input/index.js";
 
-// ============================================================================
-
 import show from "./plugins/show/index.js";
-import showAuto from "./plugins/show-auto/index.js";
+import showArea from "./plugins/show-area/index.js";
+import showBlock from "./plugins/show-block/index.js";
+import showFrame from './plugins/show-frame/index.js';
+import showImage from "./plugins/show-image/index.js";
+import showSlide from "./plugins/show-slide/index.js";
+import showTable from "./plugins/show-table/index.js";
+import showVideo from "./plugins/show-video/index.js";
+import showXterm from "./plugins/show-xterm/index.js";
+
+// ============================================================================
 
 import menu from "./plugins/menu/index.js";
 import mainMenu from "./plugins/main-menu/index.js";
 
 import audio from "./plugins/audio/index.js";
-import video from "./plugins/video/index.js";
-import slide from "./plugins/slide/index.js";
-import table from "./plugins/table/index.js";
-
-import area from "./plugins/area/index.js";
 import html from "./plugins/html/index.js";
-import term from "./plugins/term/index.js";
+
 import test from "./plugins/test/index.js";
-
-import blocks from "./plugins/blocks/index.js";
-
 
 import zimjs from './plugins/zimjs/index.js';
 import discord from "./plugins/discord/index.js";
-import showFrame from './plugins/show-frame/index.js';
 import dragItems from './plugins/drag-items/index.js';
 import selectWord from './plugins/select-word/index.js';
 
@@ -71,46 +69,35 @@ vnjs.use(hands);
 vnjs.use(handsVoice);
 vnjs.use(handsContent);
 
-vnjs.use(switchVnjson);
-vnjs.use(executeVnjson);
-vnjs.use(intervalVnjson);
+vnjs.use(vnjsonSwitch);
+vnjs.use(vnjsonExecute);
+vnjs.use(vnjsonInterval);
 
 vnjs.use(data);
 vnjs.use(dataGet);
 vnjs.use(dataInput);
 
+vnjs.use(show);
+vnjs.use(showArea);
+vnjs.use(showBlock);
+vnjs.use(showFrame);
+vnjs.use(showImage);
+vnjs.use(showSlide);
+vnjs.use(showTable);
+vnjs.use(showVideo);
+vnjs.use(showXterm);
+
 // ============================================================================
 
-vnjs.use(show);
-vnjs.use(showAuto);
-vnjs.use(audio);
 vnjs.use(menu);
 vnjs.use(mainMenu);
-vnjs.use(table);
 
-
-
-vnjs.use(slide);
 vnjs.use(html);
-vnjs.use(term);
 vnjs.use(test);
-
-
-
-
-vnjs.use(video);
-vnjs.use(area);
-vnjs.use(blocks);
-
-
-
-
-
-
+vnjs.use(audio);
 
 vnjs.use(zimjs);
 vnjs.use(discord);
-vnjs.use(showFrame);
 vnjs.use(dragItems);
 vnjs.use(selectWord);
 

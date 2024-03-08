@@ -1,7 +1,10 @@
-- center: characterImage_1
-- left: characterImage_2
-- right: characterImage_3
+# Вставка изображений в стандартные позиции
+# left и right - 260x550, center - 550x550
+- left: ari_1
+- right: ari_2
+- center: ari_3
 
-- center: false # очистить элемент персонажа
-- left: false #
-- right: false #
+# Скрытие изображенеий в стандартных позициях
+- left: false
+- right: false
+- center: false

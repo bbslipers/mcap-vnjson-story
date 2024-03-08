@@ -1,0 +1,48 @@
+# Вставка изображений
+- left-image: ari_1
+- right-image: ari_2
+- center-image: ari_3
+
+# Скрытие изображений
+- left-image: false
+- right-image: false
+- center-image: false
+
+# Вставка изображений с параметрами
+- left-image:
+    name: ari_1
+    css:
+      left: 10px
+      bottom: 210px
+      width: 200px
+      
+- right-image:
+    name: ari_2
+    css:
+      right: 10px
+      bottom: 210px
+      width: 200px
+
+- center-image:
+    name: ari_3
+    css:
+      bottom: 210px
+      width: 200px
+
+# Скрытие изображений
+- left-image: false
+- right-image: false
+- center-image: false
+
+# Вставка спрайта (фрагмента основного изображения)
+- sprite-image:
+    name: ari_1 # Основное изображение
+    offset-top: 20px # Отступ сверху
+    offset-left: 120px # Отступ слева
+    sprite-top: 10px # Позиция спрайта сверху
+    sprite-left: 10px # Позиция спрайта слева
+    sprite-width: 200px # Ширина спрайта
+    sprite-height: 200px # Высота спрайта
+
+# Скрытие спрайта
+- sprite-image: false

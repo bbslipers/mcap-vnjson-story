@@ -1,14 +1,27 @@
 .vnjson__show-left {
   position: absolute;
-  left: 50px;
+  left: 10px;
   bottom: 210px;
   top: unset;
   width: 260px;
-  height: 450px;
+  height: 550px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   z-index: 2000 
+}
+
+.vnjson__show-right {
+  position: absolute;
+  right: 10px;
+  bottom: 210px;
+  top: unset;
+  width: 260px;
+  height: 550px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  z-index: 2000;
 }
 
 .vnjson__show-center {
@@ -17,21 +30,8 @@
   transform: translateX(-50%);
   bottom: 210px;
   top: unset;
-  width: 260px;
-  height: 450px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  z-index: 2000;
-}
-
-.vnjson__show-right {
-  position: absolute;
-  right: 50px;
-  bottom: 210px;
-  top: unset;
-  width: 260px;
-  height: 450px;
+  width: 450px;
+  height: 550px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

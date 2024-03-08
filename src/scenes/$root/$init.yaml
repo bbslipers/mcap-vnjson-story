@@ -1,24 +1,16 @@
 - dialog-box: classic
   next: true
 
-# Получение случайного числа
-- data-random:
-    random: random
-    min: 1
-    max: 100
-  timeout:
-    timer: 300
-    onEnd:
-      $: "Случайное число: {{random}}"
+- sprite-image:
+    name: ari_1 # Основное изображение
+    offset-top: 20px # Отступ сверху
+    offset-left: 120px # Отступ слева
+    sprite-top: 10px # Позиция спрайта сверху
+    sprite-left: 10px # Позиция спрайта слева
+    sprite-width: 200px # Ширина спрайта
+    sprite-height: 200px # Высота спрайта
 
-# Получение случайного значения из списка
-- data-random:
-    random: random
-    list: ["Один","Два","Три"]
-  timeout:
-    timer: 300
-    onEnd:
-      $: "Случайное значение: {{random}}"
+- sprite-image: false
 
 - author:
     "<div style='text-align: justify'>
