@@ -1,23 +1,28 @@
 import "./style.css";
 import bgIMG from "./assets/bg.png";
-const $tpl = $('<div class="vnjson__blocks component"></div>');
-let stepsArray = [];
+
 let vnjs = null;
+let stepsArray = [];
+
+const $tpl = $('<div class="vnjson__blocks component"></div>');
+
 export default function () {
     vnjs = this;
     vnjs.store.screen.append($tpl);
-    vnjs.on("blocks", (param) => {
+    vnjs.on("block", (param) => {
         stepsArray = param;
         blocksHandler.call(this, stepsArray);
     });
-    vnjs.on("blocks-step", blocksStepHandler);
+    vnjs.on("block-step", blocksStepHandler);
 }
+
 function getImage(item) {
     if (item.image) {
         return vnjs.getAssetByName(item.image).url;
     }
     return bgIMG;
 }
+
 function blocksHandler(param) {
     if (param) {
         $tpl.show();
@@ -34,11 +39,11 @@ function blocksHandler(param) {
                         </div>`);
 
             $imgWrapper.css({
-                width: item.width,
-                height: item.height,
-                left: item.left,
-                top: item.top,
                 display: "block",
+                top: `${item.top}px`,
+                left: `${item.left}px`,
+                width: `${item.width}px`,
+                height: `${item.height}px`,
             });
 
             const $img = $imgWrapper.find("img");
@@ -48,11 +53,11 @@ function blocksHandler(param) {
             );
             $img.css({
                 display: "none",
-                width: item.width,
-                height: item.height,
-                left: 0,
                 top: 0,
+                left: 0,
                 opacity: 0,
+                width: `${item.width}px`,
+                height: `${item.height}px`,
             });
             $tpl.append($imgWrapper);
             /**
@@ -77,9 +82,6 @@ function blocksHandler(param) {
 
 function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
     switch (item.animation.type) {
-        /**
-         * slide
-         */
         case "slideUp":
             $img.css({ display: "block" });
             $imgBox.css({ top: "-100%" });
@@ -120,10 +122,6 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }
             });
             break;
-        /**
-         * show
-         */
-
         case "showUp":
             $img.css({ opacity: 1, display: "block" });
             $imgBox.css({
@@ -196,17 +194,14 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }
             );
             break;
-        /**
-         * move
-         */
         case "moveTo":
             $img.css({ display: "block", opacity: 1 });
             const animationData = {};
             if (item.animation.left) {
-                animationData.left = replaceData( item.animation.left.replaceAll(" ", "") );
+                animationData.left = replaceData(item.animation.left);
             }
             if (item.animation.top) {
-                animationData.top = replaceData( item.animation.top.replaceAll(" ", "") );
+                animationData.top = replaceData(item.animation.top);
             }
             $imgWrapper.animate(animationData, item.animation.duration, 'linear', () => {
                 if (item.animation.onEnd) {
@@ -214,10 +209,7 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }
             });
             break;
-        /**
-         * zoom
-         */
-        case "zoom":
+        case "zoomTo":
             $img.css({ display: "block", opacity: 1 });
 
             let animationData2 = {
@@ -233,10 +225,7 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }, item.animation.duration);
             }
             break;
-        /**
-         * zoom
-         */
-         case "rotate":
+         case "rotateTo":
             $img.css({ display: "block", opacity: 1 });
 
             let _data = {
@@ -252,9 +241,6 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }, item.animation.duration);
             }
             break;
-        /**
-         * fade
-         */
         case "fadeIn":
             $img.css({ display: "block" });
             $img.animate({ opacity: 1 }, item.animation.duration, () => {
@@ -271,10 +257,6 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
                 }
             });
             break;
-
-        /**
-         * zoom
-         */
          case "sizeTo":
             $img.css({ display: "block", opacity: 1 });
 
@@ -294,7 +276,6 @@ function animationType($imgWrapper, $img, $imgBox, item, _isStep) {
             vnjs.emit('vnjson.error', `<font color="red">Неверный тип анимации ${JSON.stringify(
                 item.animation.type
             )}</font>`)
-
     }
 }
 
@@ -322,7 +303,6 @@ function blocksStepHandler(item) {
         }
     }, item.timeout + 100);
 }
-
 
 function replaceData (str){
     return vnjs.plugins['data'].stringToData(str)
