@@ -1,57 +1,77 @@
 - table:
     - row:
       - height: 50
+      - text:
+          size: 20
+          width: 400   
+          border: true # true/false/цвет '#ff0096'
+          h-align: center # Выравнивание по горизонтали left/right/center
+          v-align: bottom # Выравнивание по вертикали top/bottom/center
+          fg-color: white # Цвет текста в ячейке, если не задан - прозрачный
+          bg-color: black # Цвет фона в ячейке, если не задан - прозрачный      
+          content: "Текст в ячейке 400px"        
+          onClick: 
+            $: Кликнули на тексте
     - row:
-       - height: 50
-       - text: 
-            content: Aaaa
-            border: '#ff0096' # true 
-            width: 180
-            color-background: black # color-background
-            align-h: right #left #center # right # У изображений выравнивания нет
-            align-v: bottom #top #center # bottom
-            size: 20           
-            exec: 
-               jump: $root.$init
-       - image:
-            name: alice-avatar
-            width: 50
-            exec: 
-               jump: $root.$init
-       - text:
-            content: test
-            border: false
-            width: 150
+      - height: 150
+      - text:
+          size: 20
+          width: 300   
+          border: true
+          h-align: center
+          v-align: center
+          fg-color: white
+          bg-color: black      
+          content: "Текст в ячейке 350px"        
+          onClick: 
+            $: Кликнули на тексте
+      - image:
+          name: author
+          width: 150
+          border: true 
+          bg-color: black                   
+          onClick: 
+            $: Кликнули на картинке
+      - text:
+          size: 20
+          width: 300   
+          border: true
+          h-align: center
+          v-align: center
+          fg-color: white
+          bg-color: black      
+          content: "Текст в ячейке 350px"        
+          onClick: 
+            $: Кликнули на тексте
     - row:
-       - height: 50
-       - text: 
-            content: $root.$init 
-            width: 150
-            exec: 
-               jump: $root.$init            
-       - image:
-            name: Screenshot_45  # this.label.table[2].row[2].image.name = img
-            width: 250
-            border: cyan
-       - text:
-            content: test
-            width: 150
-    - row:
-       - height: 50
-       - text: 
-            content: Screenshot
-            width: 150
-            exec: 
-               jump: $root.$init            
-       - image:
-            name: Screenshot_45
-            width: 150
-       - text:
-            content: test
-            width: 150
-       - image:
-            name: lake
-            width: 80
-       - image:
-            name: Screenshot_45
-            width: 150
+      - height: 150
+      - image:
+          name: ari_aa
+          width: 150
+          border: true 
+          bg-color: black
+      - image:
+          name: ari_ah
+          width: 150
+          border: true 
+          bg-color: black
+      - image:
+          name: ari_eh
+          width: 150
+          border: true 
+          bg-color: black
+      - image:
+          name: ari_hm
+          width: 150
+          border: true 
+          bg-color: black
+      - image:
+          name: ari_mm
+          width: 150
+          border: true 
+          bg-color: black
+      - image:
+          name: ari_oh
+          width: 150
+          border: true 
+          bg-color: black 
