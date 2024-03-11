@@ -1,7 +1,8 @@
 - dialog-box: classic
+  scene: scene-nature
+  hud: true  
   next: true
-
-
+  
 - author:
     "<div style='text-align: justify'>
     Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.
