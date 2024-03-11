@@ -1,7 +1,8 @@
-port: 9000
 src: src
+port: 9000
+
 updateSrc: 
-  url: https://github.com/bbslipers/mcap-vnjson-story/archive/refs/heads/main.zip
-  dir: mcap-vnjson-story
+  url: https://github.com/bbslipers/mcap-vnjson-story/archive/refs/heads/master.zip
+  dir: mcap-vnjson-story-master
 updateDirs:
   - src
