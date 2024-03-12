@@ -72,6 +72,7 @@ async function init (name){
         await fs.copy(path.join(unzip_dir, "vnjson.init.js"), path.join(update_dir, "vnjson.init.js"));    
         await fs.copy(path.join(unzip_dir, "vnjson.update.js"), path.join(update_dir, "vnjson.update.js"));
     }catch(err){
+        console.log(err);        
         return;
     }
 }
