@@ -3,6 +3,20 @@
   hud: true  
   next: true
 
+- character:
+    id: ari_mm
+    avatar: ari_mm
+    name: BB.Slipers
+    nameColor: '#00B03B'
+    replyColor: '#00B03B' 
+
+- ari_mm:
+    "<div style='text-align: justify'>
+    Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.
+    Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.
+    </div>"
+  hands-voice: kolokol
+
 - author:
     "<div style='text-align: justify'>
     Сделать свою визуальную новеллу не сложно. Сделать свою визуальную новеллу не сложно.

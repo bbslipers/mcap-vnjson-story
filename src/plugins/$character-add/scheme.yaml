@@ -1,6 +1,6 @@
 - character:
-  id: ari_mm
-  avatar: ari_mm
-  name: BB.Slipers
-  nameColor: '#00B03B'
-  replyColor: '#00B03B'      
+    id: ari_mm
+    avatar: ari_mm
+    name: BB.Slipers
+    nameColor: '#00B03B'
+    replyColor: '#00B03B'      
