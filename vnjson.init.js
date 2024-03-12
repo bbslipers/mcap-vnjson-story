@@ -53,22 +53,13 @@ async function init (name){
     console.log('unzip_dir:  ' + color.yellow(unzip_dir));
     console.log('update_dir: ' + color.yellow(update_dir));
 
-    let init_dir_exists = false;
-    fs.access(init_dir, function(err) {
-        if (err && err.code === 'ENOENT') {
-            init_dir_exists = false; 
-        }else{
-            init_dir_exists = true;
-        }
-    })
-    if (init_dir_exists){
-        console.log('init_dir:   ' + color.yellow(init_dir) + color.red(' [exists]'));
-        return;
-    }else{
-        console.log('init_dir:    ' + color.yellow(init_dir) + color.green(' [no exists]'));  
-    }
-  
-    try{
+    try {
+        await fs.readdir(init_dir);
+        console.log('init_dir:   ' + color.yellow(init_dir) + color.red(' [exists => canceling the execution]'));
+        return;        
+    }catch (err){
+        console.log('init_dir:   ' + color.yellow(init_dir) + color.green(' [no exists]'));
+
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);       
         
@@ -85,10 +76,7 @@ async function init (name){
         await fs.copy(path.join(unzip_dir, "vnjson.init.js"), path.join(update_dir, "vnjson.init.js"));    
         await fs.copy(path.join(unzip_dir, "vnjson.update.js"), path.join(update_dir, "vnjson.update.js"));
 
-        await fs.remove(unzip_dir);
-    }catch(err){
-        console.log(err);        
-        return;
+        await fs.remove(unzip_dir);        
     }
 }
 

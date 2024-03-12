@@ -62,15 +62,14 @@ async function update (name){
     console.log('unzip_dir:  ' + color.yellow(unzip_dir));
     update_dirs.forEach(function(dir) {     
         let update_dir = path.join(process.cwd(), dir);
-        fs.access(update_dir, function(err) {
-            if (err && err.code === 'ENOENT') {
-                console.log('update_dir: ' + color.yellow(update_dir) + color.green(' [no exists]'));    
-            }else{
-                console.log('update_dir: ' + color.yellow(update_dir) + color.green(' [exists]'));
-            }
-        })
+        try {
+            fs.readdirSync(update_dir);  
+            console.log('update_dir: ' + color.yellow(update_dir) + color.green(' [exists]'));              
+        }catch (err){
+            console.log('update_dir: ' + color.yellow(update_dir) + color.red(' [no exists => it will be created]'));                       
+        }
     })
-    
+
     try{
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);       
@@ -78,25 +77,24 @@ async function update (name){
         await get_zip();
         await extract_zip(zip_path, { dir: process.cwd() });
         await fs.remove(zip_path);
+    }catch(err){
+        console.log(err);
+        return;
+    }
 
-        update_dirs.forEach(function(dir) {
-            let update_dir_exists = true            
-            let update_dir = path.join(process.cwd(), dir);
-            fs.access(update_dir, function(err) {
-                if (err && err.code === 'ENOENT') {
-                    update_dir_exists = false;    
-                }
-            });
+    update_dirs.forEach(function(dir) {          
+        let update_dir = path.join(process.cwd(), dir);
+        try {
+            fs.readdirSync(update_dir);
+            fs.copySync(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
+            fs.copySync(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
+            fs.copySync(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));              
+        }catch (err){
+            fs.copySync(path.join(unzip_dir, "src"), update_dir);         
+        }
+    })
 
-            if (update_dir_exists){
-                fs.copySync(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
-                fs.copySync(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
-                fs.copySync(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));                 
-            }else{
-                fs.copySync(path.join(unzip_dir, "src"), update_dir);                  
-            }
-        })
-
+    try{
         let update_dir = process.cwd();
         
         await fs.copy(path.join(unzip_dir, "package.json"), path.join(update_dir, "package.json"));
