@@ -64,11 +64,11 @@ async function update (name){
         let update_dir = path.join(process.cwd(), dir);
         fs.access(update_dir, function(err) {
             if (err && err.code === 'ENOENT') {
-                console.log('update_dir: ' + color.yellow(update_dir) + ' [no exists]');    
+                console.log('update_dir: ' + color.yellow(update_dir) + color.green(' [no exists]'));    
             }else{
-                console.log('update_dir: ' + color.yellow(update_dir) + ' [exists]');
+                console.log('update_dir: ' + color.yellow(update_dir) + color.green(' [exists]'));
             }
-        });
+        })
     })
     
     try{

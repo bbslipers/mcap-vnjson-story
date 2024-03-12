@@ -46,14 +46,28 @@ async function get_zip (){
 
 async function init (name){
     const update_dir = process.cwd();    
-    const new_dir = path.join(process.cwd(), "src_" + name);
+    const init_dir = path.join(process.cwd(), "src_" + name);
 
-    console.log('zip_url:    ' + color.yellow(zip_url));    
-    console.log('new_dir:    ' + color.yellow(new_dir));    
+    console.log('zip_url:    ' + color.yellow(zip_url));       
     console.log('zip_path:   ' + color.yellow(zip_path));
     console.log('unzip_dir:  ' + color.yellow(unzip_dir));
-    console.log('update_dir: ' + color.yellow(update_dir));    
-        
+    console.log('update_dir: ' + color.yellow(update_dir));
+
+    let init_dir_exists = false;
+    fs.access(init_dir, function(err) {
+        if (err && err.code === 'ENOENT') {
+            init_dir_exists = false; 
+        }else{
+            init_dir_exists = true;
+        }
+    })
+    if (init_dir_exists){
+        console.log('init_dir:   ' + color.yellow(init_dir) + color.red(' [exists]'));
+        return;
+    }else{
+        console.log('init_dir:    ' + color.yellow(init_dir) + color.green(' [no exists]'));  
+    }
+  
     try{
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);       
@@ -62,7 +76,7 @@ async function init (name){
         await extract_zip(zip_path, { dir: process.cwd() });
         await fs.remove(zip_path);
 
-        await fs.copy(path.join(unzip_dir, "src"), new_dir);
+        await fs.copy(path.join(unzip_dir, "src"), init_dir);
 
         await fs.copy(path.join(unzip_dir, "package.json"), path.join(update_dir, "package.json"));
         await fs.copy(path.join(unzip_dir, "rollup.config.js"), path.join(update_dir, "rollup.config.js"));
