@@ -74,29 +74,42 @@ async function update (name){
         await get_zip();        
         await extract_zip(zip_path, { dir: process.cwd() });
     }catch(err){
-
+        return;
     }
 
-    update_dirs.forEach(function(update_dir) {
-      update_dir = path.join(process.cwd(), update_dir);
+    try{
+        update_dirs.forEach(function(update_dir) {
+        update_dir = path.join(process.cwd(), update_dir);
 
-      fs.access(update_dir, async function(err) {
-          if (err && err.code === 'ENOENT') {
-              await fs.copy(path.join(unzip_dir, "src"), update_dir);  
-          }else{
-              await fs.copy(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
-              await fs.copy(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
-              await fs.copy(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));                           
-          }
-      });
-      console.log('Обновлено: ' + color.yellow(update_dir));
-    })
+        fs.access(update_dir, async function(err) {
+            if (err && err.code === 'ENOENT') {
+                await fs.copy(path.join(unzip_dir, "src"), update_dir);  
+            }else{
+                await fs.copy(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
+                await fs.copy(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
+                await fs.copy(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));                           
+            }
+        });
+        console.log('Обновлено: ' + color.yellow(update_dir));
+        })
+
+        let update_dir = process.cwd();
+        
+        await fs.copy(path.join(unzip_dir, "package.json"), path.join(update_dir, "package.json"));
+        await fs.copy(path.join(unzip_dir, "package-lock.json"), path.join(update_dir, "package-lock.json"));
+
+        await fs.copy(path.join(unzip_dir, "vnjson.init.js"), path.join(update_dir, "vnjson.init.js"));    
+        await fs.copy(path.join(unzip_dir, "vnjson.update.js"), path.join(update_dir, "vnjson.update.js"));
+        await fs.copy(path.join(unzip_dir, "rollup.config.js"), path.join(update_dir, "rollup.config.js"));
+    }catch(err){
+        return;
+    }    
 
     try{
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);
     }catch(err){
-
+        return;
     }
 }
 

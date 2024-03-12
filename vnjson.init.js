@@ -53,8 +53,8 @@ async function get_zip (){
 }
 
 async function init (name){
-    const new_dir = path.join(process.cwd(), "src_" + name);
-    console.log('Загрузка: ' + color.yellow(zip_url));         
+    console.log('Загрузка: ' + color.yellow(zip_url));     
+    const new_dir = path.join(process.cwd(), "src_" + name);        
     try{
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);       
@@ -65,8 +65,18 @@ async function init (name){
 
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);
-    }catch(err){
 
+        let update_dir = process.cwd();
+        
+        await fs.copy(path.join(unzip_dir, "package.json"), path.join(update_dir, "package.json"));
+        await fs.copy(path.join(unzip_dir, "package-lock.json"), path.join(update_dir, "package-lock.json"));
+
+        await fs.copy(path.join(unzip_dir, "vnjson.init.js"), path.join(update_dir, "vnjson.init.js"));    
+        await fs.copy(path.join(unzip_dir, "vnjson.update.js"), path.join(update_dir, "vnjson.update.js"));
+        await fs.copy(path.join(unzip_dir, "rollup.config.js"), path.join(update_dir, "rollup.config.js"));
+
+    }catch(err){
+        return;
     }
 }
 
