@@ -4,6 +4,7 @@ import './theme.css'
 // log, jump, next, timeout
 
 import assetsLoader from "./plugins/$assets-loader/index.js";
+import characterAdd from "./plugins/$character-add/index.js";
 import discordLogger from "./plugins/$discord-logger/index.js";
 import fontFamilyLoader from "./plugins/$font-family-loader/index.js";
 import htmlIframeLoader from "./plugins/$html-iframe-loader/index.js";
@@ -45,6 +46,7 @@ import playZimjs from './plugins/play-zimjs/index.js';
 //==================================================================
 
 vnjs.use(assetsLoader);
+vnjs.use(characterAdd);
 vnjs.use(discordLogger);
 vnjs.use(fontFamilyLoader);
 vnjs.use(htmlIframeLoader);

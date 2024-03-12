@@ -63,7 +63,7 @@
   const emitter = knot();
   
   class Vnjson {
-    version = "2.0.1";
+    version = "3.0.0";
     ctx = null;
     tree = null;
     package = null;
@@ -124,7 +124,6 @@
       if (this.tree[sceneName]) {
         return true;
       }
-  
       return false;
     }
   
@@ -132,17 +131,14 @@
       if (this.isSceneExist(sceneName) && this.tree[sceneName][labelName]) {
         return true;
       }
-  
       return false;
     }
   
     isRouteExist(pathname) {
       const route = pathname.split(".");
-  
       if (route.length === 1) {
         return this.isSceneExist(this.state.sceneName, route[0]);
-      }
-  
+      }  
       if (route.length > 1) {
         return this.isLabelExist(route[0], route[1]);
       }
@@ -189,15 +185,11 @@
         if (this.conf.$) {
           narrator = this.conf.$;
         }
-  
         this.tree.$root.characters = [narrator];
       }
   
       this.tree.$root.characters.map(character => {
-        /**
-         * Навешиваем слушатель на id персонажа
-         *
-         */
+        // Навешиваем слушатель на id персонажа
         this.on(character.id, reply => {
           this.state.character = character;
           this.emit("vnjson.character", character, reply);

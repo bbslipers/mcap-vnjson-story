@@ -1,6 +1,6 @@
 {
   "name": "mcap-vnjson-story",
-  "version": "2.3.7",
+  "version": "3.0.0",
   "description": "Visual Novel Engine",
   "main": "rollup.config.js",
   "scripts": {
