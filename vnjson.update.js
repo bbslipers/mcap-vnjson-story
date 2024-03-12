@@ -5,42 +5,29 @@ const request = require('request');
 const color = require('ansi-colors');
 const extract_zip = require('extract-zip');
 
-var config = {}
+let config = {}
 try {
     config = yaml.parse(fs.readFileSync(path.join(process.cwd(), 'config.yaml'),'utf8'));
 } catch (err) {
     console.log('Ошибка: Файл config.yaml не существует или имеет неверный формат');
     return;
 }
-
-var zip_url = null
-if (typeof config.updateSrc !== "undefined") {
-    if (typeof config.updateSrc.url !== "undefined") {
-        zip_url = config.updateSrc.url;
-    }    
+if (typeof config.updateSrc === "undefined") {
+    console.log('Ошибка: Не задан параметр updateSrc');    
+    return;
 }
-if (zip_url === null) {
+if (typeof config.updateSrc.url === "undefined") {
     console.log('Ошибка: Не задан параметр updateSrc.url');
-    return;    
+    return;
 }
-
-var unzip_dir = null
-if (typeof config.updateSrc !== "undefined") {
-    if (typeof config.updateSrc.url !== "undefined") {
-        unzip_dir = path.join(process.cwd(), config.updateSrc.dir)
-    }    
-}
-if (unzip_dir === null) {
+if (typeof config.updateSrc.dir === "undefined") {
     console.log('Ошибка: Не задан параметр updateSrc.dir');
-    return;    
-}
+    return;
+} 
 
-var update_dirs = []
-if (typeof config.updateDirs !== "undefined") {
-  update_dirs = config.updateDirs;  
-}
-
-var zip_path = path.join(process.cwd(), "vnjson.zip");
+const zip_url = config.updateSrc.url;
+const zip_path = path.join(process.cwd(), "vnjson.zip");
+const unzip_dir = path.join(process.cwd(), config.updateSrc.dir);
 
 async function get_zip (){
     return new Promise( (resolve, reject) => {
@@ -57,7 +44,11 @@ async function get_zip (){
     });
 }
 
-async function update (name){
+async function update (name){   
+    let update_dirs = []
+    if (typeof config.updateDirs !== "undefined") {
+        update_dirs = config.updateDirs;
+    }    
     if (update_dirs.length === 0 && typeof name === "undefined") {
         console.log('Ошибка: Не задан параметр updateDirs');
         return;   
@@ -66,49 +57,58 @@ async function update (name){
         update_dirs = ['src_' + name]  
     }
   
-    console.log('Загрузка: ' + color.yellow(zip_url));         
+    console.log('zip_url:    ' + color.yellow(zip_url));    
+    console.log('zip_path:   ' + color.yellow(zip_path));
+    console.log('unzip_dir:  ' + color.yellow(unzip_dir));
+    update_dirs.forEach(function(dir) {     
+        let update_dir = path.join(process.cwd(), dir);
+        fs.access(update_dir, function(err) {
+            if (err && err.code === 'ENOENT') {
+                console.log('update_dir: ' + color.yellow(update_dir) + ' [no exists]');    
+            }else{
+                console.log('update_dir: ' + color.yellow(update_dir) + ' [exists]');
+            }
+        });
+    })
+    
     try{
         await fs.remove(zip_path);
         await fs.remove(unzip_dir);       
       
-        await get_zip();        
+        await get_zip();
         await extract_zip(zip_path, { dir: process.cwd() });
-    }catch(err){
-        return;
-    }
+        await fs.remove(zip_path);
 
-    try{
-        update_dirs.forEach(function(update_dir) {
-        update_dir = path.join(process.cwd(), update_dir);
+        update_dirs.forEach(function(dir) {
+            let update_dir_exists = true            
+            let update_dir = path.join(process.cwd(), dir);
+            fs.access(update_dir, function(err) {
+                if (err && err.code === 'ENOENT') {
+                    update_dir_exists = false;    
+                }
+            });
 
-        fs.access(update_dir, async function(err) {
-            if (err && err.code === 'ENOENT') {
-                await fs.copy(path.join(unzip_dir, "src"), update_dir);  
+            if (update_dir_exists){
+                fs.copySync(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
+                fs.copySync(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
+                fs.copySync(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));                 
             }else{
-                await fs.copy(path.join(unzip_dir, "src", "plugins"), path.join(update_dir, "plugins"));
-                await fs.copy(path.join(unzip_dir, "src", "main.js"), path.join(update_dir, "main.js"));               
-                await fs.copy(path.join(unzip_dir, "src", "static"), path.join(update_dir, "static"));                           
+                fs.copySync(path.join(unzip_dir, "src"), update_dir);                  
             }
-        });
-        console.log('Обновлено: ' + color.yellow(update_dir));
         })
 
         let update_dir = process.cwd();
         
         await fs.copy(path.join(unzip_dir, "package.json"), path.join(update_dir, "package.json"));
+        await fs.copy(path.join(unzip_dir, "rollup.config.js"), path.join(update_dir, "rollup.config.js"));        
         await fs.copy(path.join(unzip_dir, "package-lock.json"), path.join(update_dir, "package-lock.json"));
 
         await fs.copy(path.join(unzip_dir, "vnjson.init.js"), path.join(update_dir, "vnjson.init.js"));    
         await fs.copy(path.join(unzip_dir, "vnjson.update.js"), path.join(update_dir, "vnjson.update.js"));
-        await fs.copy(path.join(unzip_dir, "rollup.config.js"), path.join(update_dir, "rollup.config.js"));
-    }catch(err){
-        return;
-    }    
 
-    try{
-        await fs.remove(zip_path);
         await fs.remove(unzip_dir);
     }catch(err){
+        console.log(err);
         return;
     }
 }
