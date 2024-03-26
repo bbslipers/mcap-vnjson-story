@@ -1,0 +1,15 @@
+# Проверка того что новелла запущена в браузере minecraft-mcef
+- mc-check:
+    # Действия выполняемые в случае успеха 
+    true:
+      $: Проверка пройдена
+    # Действия выполняемые в случае неудачи      
+    false: 
+      $: Проверка не пройдена
+
+- mc-check:
+    true:
+      mc-exec:
+        action: executeCMD
+        data: say TEST # give @p {{item}} {{count}}
+        type: player # server

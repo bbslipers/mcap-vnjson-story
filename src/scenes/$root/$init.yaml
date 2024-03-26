@@ -3,6 +3,21 @@
   hud: true  
   next: true
 
+- mc-check:
+    true:
+      $: Проверка пройдена браузер minecraft-mcef   
+    false: 
+      $: Проверка не пройдена браузер microsowt-windows
+
+- mc-check:
+    true:
+      mc-exec:
+        action: executeCMD
+        data: say TEST # give @p {{item}} {{count}}
+        type: player # server
+      $: say TEST
+
+
 - character:
     id: ari_mm
     avatar: ari_mm

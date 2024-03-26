@@ -8,6 +8,7 @@ import characterAdd from "./plugins/$character-add/index.js";
 import discordLogger from "./plugins/$discord-logger/index.js";
 import fontFamilyLoader from "./plugins/$font-family-loader/index.js";
 import htmlIframeLoader from "./plugins/$html-iframe-loader/index.js";
+import minecraftMcefGet from "./plugins/$minecraft-mcef-get/index.js";
 import screenScaleLoader from "./plugins/$screen-scale-loader/index.js";
 
 import vnjsonClear from "./plugins/vnjson-clear/index.js";
@@ -50,6 +51,7 @@ vnjs.use(characterAdd);
 vnjs.use(discordLogger);
 vnjs.use(fontFamilyLoader);
 vnjs.use(htmlIframeLoader);
+vnjs.use(minecraftMcefGet);
 vnjs.use(screenScaleLoader);
 
 vnjs.use(vnjsonClear);
