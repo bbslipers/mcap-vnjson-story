@@ -88,6 +88,7 @@ vnjs.use(playAudio);
 vnjs.use(playZimjs);
 
 // Load scenes
+// vnjs.emit("vnjson.error", errorSnippet);
 //function showError (err){
 //  const $errorWindow =  $(".debug-error");
 //  $errorWindow.show();

@@ -3,6 +3,34 @@
   hud: true  
   next: true
 
+- area:
+    - areaWidth: 1024
+    - areaHeight: 568
+    - onClickAny: # Обрабатывает клик при клике на любой области
+        $: onClickAny
+    - onClickOut: # Обратывает клик в любом месте кроме любой области
+        $: onClickOut
+    - item: true
+      type: switch
+      top: 250 # Отступ сверху в px
+      left: 10 # Отступ слева в px
+      width: 150 # Ширина области слева в px
+      height: 150 # Высота области слева в px
+      image: author # Необязательный
+      color: true # Закрашивать область true/false/color      
+      border: black # Показывать рамку вокруг области true/false/color     
+      onClick: # Обрабатывает клик по области
+        $: Region one
+    - item: true
+      type: switch    
+      top: 10
+      left: 10      
+      width: 50
+      height: 50
+      border: '#e97616'
+
+
+
 - mc-check:
     true:
       $: Проверка пройдена браузер minecraft-mcef   

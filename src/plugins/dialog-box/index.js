@@ -1,7 +1,6 @@
 import "./style.css";
 import tpl from "./tpl.html";
 import DialogBox from "./DialogBox.js";
-import errorSnippet from "./error-snippet.js";
 
 let dBox = null
 const $tpl = $(tpl);
@@ -86,7 +85,6 @@ function handler (args){
             dBox.show();
         },
     };
-
     controller[key]();
 }
 
@@ -122,8 +120,5 @@ function onPostload (){
                     break;                    
             }
         }
-    } 
-    else {
-        vnjs.emit("vnjson.error", errorSnippet);
-    }    
+    }  
 }
