@@ -47,31 +47,32 @@ vnjs.on("area", (args) => {
                 width: `${reg.width}px`,
                 height: `${reg.height}px`
             })
-      
-            if (reg.border) {
-                if (reg.border === true) {
-                    $regTpl.css('border', '3px solid grey');
+            
+            if (!(reg.type === "inv-switch")) {
+                if (reg.border) {
+                    if (reg.border === true) {
+                        $regTpl.css('border', '3px solid grey');
+                    }
+                    if (typeof reg.border === "string") {
+                        $regTpl.css('border', `3px solid ${reg.border}`);
+                    }
                 }
-                if (typeof reg.border === "string") {
-                    $regTpl.css('border', `3px solid ${reg.border}`);
-                }
-            }
 
-            if (reg.image) {
-                if (typeof reg.image === "string") {
-                    $regTpl.css('background-image', `url("${vnjs.getAssetByName(reg.image).url}")`);
+                if (reg.image) {
+                    if (typeof reg.image === "string") {
+                        $regTpl.css('background-image', `url("${vnjs.getAssetByName(reg.image).url}")`);
+                    }
+                }
+                
+                if (reg.color) {
+                    if (reg.color === true) {
+                        $regTpl.css('background-color', 'grey');
+                    }
+                    if (typeof reg.color === "string") {
+                        $regTpl.css('background-color', reg.color);
+                    }
                 }
             }
-            
-            if (reg.color) {
-                if (reg.color === true) {
-                    $regTpl.css('background-color', 'grey');
-                }
-                if (typeof reg.color === "string") {
-                    $regTpl.css('background-color', reg.color);
-                }
-            }
-            
             if(reg.onClick){
                 $regTpl.on('click', () => vnjs.exec(Object.assign(onClickAny, reg.onClick)));
             }else{
@@ -99,7 +100,7 @@ vnjs.on("area", (args) => {
                 const regIndex = JSON.parse(e.target.dataset.index);
                 const regItem = area[regIndex];
                 const regElement = $(e.target);
-                if (regItem.type === "switch") {
+                if ((regItem.type === "switch")||(regItem.type === "inv-switch")) {
                     if (regElement.css('border') === "0px none rgb(0, 0, 0)"){
                         if (regItem.border) {
                             if (regItem.border === true) {

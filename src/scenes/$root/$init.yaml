@@ -11,7 +11,7 @@
     - onClickOut: # Обратывает клик в любом месте кроме любой области
         $: onClickOut
     - item: true
-      type: switch
+      type: inv-switch
       top: 250 # Отступ сверху в px
       left: 10 # Отступ слева в px
       width: 150 # Ширина области слева в px

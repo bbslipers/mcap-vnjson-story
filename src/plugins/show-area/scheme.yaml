@@ -12,7 +12,7 @@
         $: onClickOut
     # Начало определения региона, признак его активности true/false
     - item: true # Обязательный
-      # Тип региона none/switch
+      # Тип региона none/switch/inv-switch
       type: switch # Необязательный
       # Отступ сверху (px)
       top: 250 # Необязательный
