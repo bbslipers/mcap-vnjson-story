@@ -1,10 +1,12 @@
-import tpl from "./tpl.html";
 import "./style.css";
+import tpl from "./tpl.html";
+
+let name = null;
+let onClick = null;
+let character = null;
 
 const $tpl = $(tpl);
 const input = $tpl.find(".vnjson__input-wrapper input");
-let _args = null;
-let character = null;
 
 export default function () {
     vnjs.store.screen.append($tpl);
@@ -14,34 +16,38 @@ export default function () {
 vnjs.on("data-input", handler);
 vnjs.on("name-input", handler);
 
-function handler (args){
-    character = vnjs.getCharacterById(args);
-    if (args) {
-        _args = args;
-        if(character){
-            input.val(character.name);
+function handler(args) {
+    if (args){
+        name = args.name;
+        if (name){
+            character = vnjs.getCharacterById(name);
+            if (character) {
+                input.val(name||("id: " + character.id + " | name: " + name));    
+            }else{
+                input.val(vnjs.state.data[name]);    
+            }
+            $tpl.css("display", "flex");
         }
-        else{   
-            const _varData = vnjs.state.data[args];
-            input.val(_varData);
+        if (args.onClick){
+            onClick = args.onClick;
         }
-        $tpl.css("display", "flex");
-    } 
-    else {
-        $tpl.hide();
+    }else{
+        input.val("");
+        $tpl.css("display", "none");
     }
 }
 
-function clickHandler () {   
-    $tpl.fadeOut();
+function clickHandler () {
     if (character) {
         character.name = input.val();
-    } 
-    else {
+    }else{
         vnjs.emit("data-set", {
-            [_args]: input.val(),
+            [name]: input.val(),
         });
     }
     input.val("");
-    vnjs.emit('next', true);
+    $tpl.css("display", "none");
+    if (onClick) {
+        vnjs.exec(onClick);
+    }    
 }

@@ -15,6 +15,7 @@ dialog-box:
   #alpha: 0.3
   #endPoint: true
   font-size: 20px
+  text-align: justify
   line-height: 24px
   font-family: liberation
   mode-classic: dialog-box

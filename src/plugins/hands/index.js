@@ -2,37 +2,37 @@ import "./style.css";
 import tpl from "./tpl.html";
 
 const $tpl = $(tpl);
+
 let show = false;
+let character = null;
+
 export default function () {
     vnjs.store.screen.append($tpl);
     vnjs.on("hands", (args) => handler(args));
     vnjs.on("hand-left", (args) => leftHandler(args));
     vnjs.on("hand-right", (args) => rightHandler(args));
-    /**
-     * Когда  dialog-box скрыт, то и плагин hands нужно скрыть
-     */
     vnjs.on("dialog-box.false", () => vnjs.emit("hands", false));
-    /**
-     * При выводе реплик проверяем, есть ли у персонажа свойство avatar
-     * Если есть, то ширину блока с репликой необходимо уменьшить
-     * Так же, стили необходимо восстановить, если встретился персонаж без аватара
-     */
     vnjs.on("vnjson.character", (character) => characterHandler(vnjs.state.character));
 }
 
 function handler(args) {
+    character = vnjs.state.character;
+    const replyWrapper = $(".dialog-box__reply-wrapper");    
     if (args) {
-        show = true;
         $tpl.show();
+        show = true;
+        characterHandler(character);       
     } else {
-        show = false;
         $tpl.hide();
-    }
+        show = false;
+        characterHandler(character);         
+    }   
 }
+
 function leftHandler(args) {
     if (args) {
-        show = true;
         $tpl.show();
+        show = true;
         $tpl.find(".vnjson__hand-left").css(
             "background-image",
             `url('${vnjs.getAssetByName(args).url}')`
@@ -41,10 +41,11 @@ function leftHandler(args) {
         $tpl.find(".vnjson__hand-left").css("background-image", "unset");
     }
 }
+
 function rightHandler(args) {
     if (args) {
-        show = true;
         $tpl.show();
+        show = true;
         $tpl.find(".vnjson__hand-right").css(
             "background-image",
             `url('${vnjs.getAssetByName(args).url}')`
@@ -53,22 +54,43 @@ function rightHandler(args) {
         $tpl.find(".vnjson__hand-right").css("background-image", "unset");
     }
 }
+
 function characterHandler(character) {
     const replyWrapper = $(".dialog-box__reply-wrapper");
-    // если нет ни аватара ни рук
+    if (character === null && !show) {
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '99%', 'important');          
+        replyWrapper.css("max-width", "99%");
+        return;
+    }
+    if (character === null && show) {
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '89%', 'important');          
+        replyWrapper.css("max-width", "89%");
+        return;
+    }    
     if (!character.avatar && !show) {
-        replyWrapper.css("width", "99%");
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '99%', 'important');          
+        replyWrapper.css("max-width", "99%");
+        return;
     }
-    // если есть аватар, но руки не отображаются
     if (character.avatar && !show) {
-        replyWrapper.css("width", "84.5%");
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '84.5%', 'important');         
+        replyWrapper.css("max-width", "84%");
+        return;        
     }
-    // если аватар есть и руки отображены
     if (character.avatar && show) {
-        replyWrapper.css("width", "75%");
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '75%', 'important');        
+        replyWrapper.css("max-width", "75%");
+        return;        
     }
-    // Если аватара нет, но показывает руки
     if (!character.avatar && show) {
-        replyWrapper.css("width", "89%");
+        //replyWrapper[0].style.removeProperty('max-width');
+        //replyWrapper[0].style.setProperty('max-width', '89%', 'important');          
+        replyWrapper.css("max-width", "89%");
+        return;
     }
 }

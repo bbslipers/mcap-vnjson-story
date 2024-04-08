@@ -20,13 +20,17 @@ import dialogBox from "./plugins/dialog-box/index.js";
 import dialogBoxHud from "./plugins/dialog-box-hud/index.js";
 import dialogBoxInfo from "./plugins/dialog-box-info/index.js";
 
-import data from "./plugins/data/index.js";
-import dataGet from './plugins/data-get/index.js';
-import dataInput from "./plugins/data-input/index.js";
+import playVideo from "./plugins/play-video/index.js";
+import playAudio from "./plugins/play-audio/index.js";
+import playZimjs from './plugins/play-zimjs/index.js';
 
 import hands from "./plugins/hands/index.js";
 import handsVoice from "./plugins/hands-voice/index.js";
 import handsContent from "./plugins/hands-content/index.js";
+
+import data from "./plugins/data/index.js";
+import dataGet from './plugins/data-get/index.js';
+import dataInput from "./plugins/data-input/index.js";
 
 import show from "./plugins/show/index.js";
 import showArea from "./plugins/show-area/index.js";
@@ -39,10 +43,6 @@ import showScene from "./plugins/show-scene/index.js";
 import showTable from "./plugins/show-table/index.js";
 import showXterm from "./plugins/show-xterm/index.js";
 import showQtest from "./plugins/show-qtest/index.js";
-
-import playVideo from "./plugins/play-video/index.js";
-import playAudio from "./plugins/play-audio/index.js";
-import playZimjs from './plugins/play-zimjs/index.js';
 
 //==================================================================
 
@@ -63,13 +63,17 @@ vnjs.use(dialogBox);
 vnjs.use(dialogBoxHud);
 vnjs.use(dialogBoxInfo);
 
-vnjs.use(data);
-vnjs.use(dataGet);
-vnjs.use(dataInput);
+vnjs.use(playVideo);
+vnjs.use(playAudio);
+vnjs.use(playZimjs);
 
 vnjs.use(hands);
 vnjs.use(handsVoice);
 vnjs.use(handsContent);
+
+vnjs.use(data);
+vnjs.use(dataGet);
+vnjs.use(dataInput);
 
 vnjs.use(show);
 vnjs.use(showArea);
@@ -83,9 +87,7 @@ vnjs.use(showTable);
 vnjs.use(showXterm);
 vnjs.use(showQtest);
 
-vnjs.use(playVideo);
-vnjs.use(playAudio);
-vnjs.use(playZimjs);
+
 
 // Load scenes
 // vnjs.emit("vnjson.error", errorSnippet);
@@ -139,6 +141,16 @@ vnjs.on("postload", function () {
       uuid: vnjs.package.player.uuid
     }
     vnjs.emit('player-load', vnjs.state.data.player.name);
+  }
+
+  // Выравнивание текста реплики по умолчанию
+  // left/right/center/justify
+  const replyWrapper = $(".dialog-box__reply-wrapper");
+  const textAlign = vnjs.package["dialog-box"]["text-align"];
+  if (textAlign) {
+    replyWrapper.css("text-align", textAlign);
+  }else{
+    replyWrapper.css("text-align", "left");    
   }
 
   // Обработка перехода по URL

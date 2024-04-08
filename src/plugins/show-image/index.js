@@ -27,10 +27,15 @@ vnjs.on("left-image", (id) => {
             if (id.css) {
                 $left.css(id.css);
             }
+            if (id.fade) {
+                $left.fadeIn();    
+            }else{
+                $left.show();                
+            }
         } else {
             $left.attr("src", vnjs.getAssetByName(id).url);
+            $left.fadeIn();
         }
-        $left.fadeIn();
     } else {
         $left.fadeOut();
     }
@@ -44,10 +49,15 @@ vnjs.on("right-image", (id) => {
             if (id.css) {
                 $right.css(id.css);
             }
+            if (id.fade) {
+                $right.fadeIn();    
+            }else{
+                $right.show();                
+            }           
         } else {
             $right.attr("src", vnjs.getAssetByName(id).url);
+            $right.fadeIn();
         }
-        $right.fadeIn();
     } else {
         $right.fadeOut();
     }
@@ -61,10 +71,15 @@ vnjs.on("center-image", (id) => {
             if (id.css) {
                 $center.css(id.css);
             }
+            if (id.fade) {
+                $center.fadeIn();    
+            }else{
+                $center.show();                
+            }            
         } else {
             $center.attr("src", vnjs.getAssetByName(id).url);
+            $center.fadeIn();            
         }
-        $center.fadeIn();
     } else {
         $center.fadeOut();
     }

@@ -7,6 +7,7 @@
   height: 505px;
   top: 20px;
   overflow: auto;
+  z-index: 10000;  
   border-radius: 4px;
   transform: translateX(-50%);
 }

@@ -22,6 +22,9 @@ class Controller {
                 score: vnjs.state.data.score,
                 player: vnjs.state.data.player,
             };
+        } else if (typeof(args) === "string") {
+            delete vnjs.state.data[args];
+            this.save(vnjs.state.data);
         } else if (Array.isArray(args)) {
             args.forEach((item) => {
                 delete vnjs.state.data[item];

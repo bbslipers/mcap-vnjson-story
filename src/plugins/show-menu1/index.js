@@ -1,9 +1,8 @@
-import Menu from './Menu.js'
-import "./style.css";
+import Menu from './Menu.js';
 import tpl from "./tpl.html";
+import "./style.css";
 
 const $tpl = $(tpl);
-
 
 export default function (){
     const config = {
@@ -27,9 +26,7 @@ export default function (){
         if(menuConf){
             const audioUrl = vnjs.getAssetByName(menuConf.audio).url
             menu.audio = new Howl({src: audioUrl, volume: menuConf.volume||1})
-
         }
-        
     })
     /**
      * Храним предыдущее значение меню. Это нужно для того,
@@ -53,7 +50,5 @@ export default function (){
         else{
             menu.hide()
         }
-
     })
-
 }
