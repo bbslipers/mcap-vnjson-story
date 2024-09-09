@@ -29,8 +29,6 @@
       height: 50
       border: '#e97616'
 
-
-
 - mc-check:
     true:
       $: Проверка пройдена браузер minecraft-mcef   
@@ -44,7 +42,6 @@
         data: say TEST # give @p {{item}} {{count}}
         type: player # server
       $: say TEST
-
 
 - character:
     id: ari_mm
